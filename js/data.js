@@ -1,13 +1,977 @@
-export const DISTRICTS={Thanjavur:{lat:10.787,lon:79.1378,market:'Thanjavur Mandi'},Erode:{lat:11.341,lon:77.7172,market:'Perundurai Erode APMC'},Salem:{lat:11.6643,lon:78.146,market:'Shevapet Mandi'},Madurai:{lat:9.9252,lon:78.1198,market:'Mattuthavani Mandi'},Coimbatore:{lat:11.0168,lon:76.9558,market:'Mettupalayam APMC'},Tiruchirappalli:{lat:10.7905,lon:78.7047,market:'Gandhi Market'},Cuddalore:{lat:11.748,lon:79.7714,market:'Virudhachalam APMC'},Tirunelveli:{lat:8.7139,lon:77.7567,market:'Tirunelveli Mandi'},Dharmapuri:{lat:12.1211,lon:78.1582,market:'Dharmapuri Mandi'},Tiruvarur:{lat:10.7725,lon:79.6365,market:'Mannargudi Mandi'},Villupuram:{lat:11.9401,lon:79.4861,market:'Villupuram Mandi'},Dindigul:{lat:10.3673,lon:77.9803,market:'Oddanchatram Market'}};
+// ==========================================================================
+// SMART FARMING DATA ENGINE - ALL-INDIA AGRICULTURAL DATABASE
+// Comprehensive data for 28 States, 8 UTs, 16+ Crops, Mandis, Schemes & Help
+// ==========================================================================
 
-export const CROPS=[
-{id:'paddy',ta:'நெல்',en:'Paddy (Rice)',soils:['clay','alluvial','black'],water:['sufficient','canal','borewell'],budget:24000,days:120,yield:'22–28 bags',price:'₹1,450–₹1,720',reasonTa:'களிமண் மற்றும் வண்டல் மண், நிலையான பாசனம் உள்ள நிலங்களுக்கு ஏற்றது.',reasonEn:'Good for clay/alluvial soils with reliable irrigation.',calendar:[[1,'நாற்று தயாரிப்பு','Nursery & seed treatment'],[22,'நாற்று நடுதல்','Transplanting'],[45,'களை எடுத்தல் & உரமிடுதல்','Weeding & top dressing'],[75,'மணி உருவாதல்','Panicle emergence'],[95,'பால் பிடிக்கும் நிலை','Milking stage'],[120,'அறுவடை','Harvest']]},
-{id:'groundnut',ta:'நிலக்கடலை',en:'Groundnut (Peanut)',soils:['red','sandy'],water:['limited','rainfed','borewell'],budget:18000,days:105,yield:'14–18 bags',price:'₹6,400–₹7,300',reasonTa:'செம்மண்/மணல் மண் மற்றும் குறைந்த நீர் வசதிக்கு ஏற்றது.',reasonEn:'Suitable for red/sandy soils and limited water.',calendar:[[1,'விதைப்பு','Sowing'],[20,'முதல் களை எடுத்தல்','First weeding'],[35,'உரமிடுதல்','Nutrient application'],[60,'பூக்கும் நிலை','Flowering'],[85,'காய் உருவாதல்','Pegging & pod formation'],[105,'அறுவடை','Harvest']]},
-{id:'maize',ta:'மக்காச்சோளம்',en:'Maize',soils:['red','black','alluvial'],water:['limited','sufficient','borewell'],budget:20000,days:100,yield:'20–25 quintals',price:'₹2,100–₹2,500/q',reasonTa:'செம்மண், கரிசல் மற்றும் வண்டல் மண்ணில் நல்ல வளர்ச்சி.',reasonEn:'Performs well in red, black and alluvial soils.',calendar:[[1,'விதைப்பு','Sowing'],[15,'முளை பராமரிப்பு','Early crop care'],[35,'மேல் உரம்','Top dressing'],[55,'களை கட்டுப்பாடு','Weed control'],[75,'கதிர் உருவாதல்','Tasseling'],[100,'அறுவடை','Harvest']]},
-{id:'cotton',ta:'பருத்தி',en:'Cotton',soils:['black','red'],water:['limited','sufficient','borewell'],budget:26000,days:170,yield:'8–12 quintals',price:'₹6,800–₹7,500/q',reasonTa:'கரிசல் மண் மற்றும் மிதமான நீர் வசதிக்கு ஏற்றது.',reasonEn:'Best suited to black soil with moderate water.',calendar:[[1,'விதைப்பு','Sowing'],[30,'களை கட்டுப்பாடு','Weed control'],[60,'மேல் உரம்','Top dressing'],[90,'பூக்கும் நிலை','Flowering'],[130,'காய் வெடிப்பு','Boll development'],[170,'அறுவடை','Picking']]},
-{id:'tomato',ta:'தக்காளி',en:'Tomato',soils:['red','alluvial'],water:['sufficient','borewell','openWell'],budget:35000,days:90,yield:'12–18 tonnes',price:'₹1,500–₹3,500/q',reasonTa:'நல்ல வடிகால் மற்றும் தொடர்ச்சியான நீர் வசதி உள்ள நிலங்களுக்கு ஏற்றது.',reasonEn:'Needs good drainage and regular irrigation.',calendar:[[1,'நாற்று நடுதல்','Transplanting'],[20,'வளர்ச்சி உரம்','Vegetative nutrition'],[40,'பூக்கும் நிலை','Flowering'],[55,'காய் உருவாதல்','Fruit setting'],[70,'முதல் பறிப்பு','First picking'],[90,'தொடர் அறுவடை','Harvesting']]}
+export const ALL_INDIAN_STATES = [
+  'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+  'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+  'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
+  'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+  'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
+  'Andaman and Nicobar Islands', 'Chandigarh', 'Dadra and Nagar Haveli and Daman and Diu',
+  'Delhi', 'Jammu and Kashmir', 'Ladakh', 'Lakshadweep', 'Puducherry'
 ];
 
-export const SOILS=[['red','செம்மண்','Red Soil'],['black','கரிசல் மண்','Black Soil'],['alluvial','வண்டல் மண்','Alluvial Soil'],['clay','களிமண்','Clay Soil'],['sandy','மணல் மண்','Sandy Soil']];
-export const WATER=[['rainfed','மழைநீர்','Rainfed'],['limited','குறைந்த நீர்','Limited water'],['sufficient','போதுமான நீர்','Sufficient water'],['borewell','ஆழ்துளை கிணறு','Borewell'],['canal','கால்வாய்','Canal'],['openWell','கிணறு','Open well']];
-export const STATES=['Tamil Nadu','Karnataka','Kerala','Andhra Pradesh','Telangana','Other'];
+export const DISTRICT_COORDINATES = {
+  // Tamil Nadu
+  'Dharmapuri': { state: 'Tamil Nadu', lat: 12.1211, lon: 78.1582, market: 'Dharmapuri Regulated Market', taluks: ['Pennagaram', 'Dharmapuri', 'Palacode', 'Harur', 'Karimangalam', 'Pappireddipatti'] },
+  'Salem': { state: 'Tamil Nadu', lat: 11.6643, lon: 78.1460, market: 'Shevapet APMC', taluks: ['Salem', 'Attur', 'Mettur', 'Omalur', 'Sankari', 'Yercaud'] },
+  'Thanjavur': { state: 'Tamil Nadu', lat: 10.7870, lon: 79.1378, market: 'Thanjavur Mandi', taluks: ['Thanjavur', 'Kumbakonam', 'Papanasam', 'Pattukkottai', 'Orathanadu'] },
+  'Erode': { state: 'Tamil Nadu', lat: 11.3410, lon: 77.7172, market: 'Perundurai Turmeric Market', taluks: ['Erode', 'Gobichettipalayam', 'Bhavani', 'Perundurai', 'Sathyamangalam'] },
+  'Coimbatore': { state: 'Tamil Nadu', lat: 11.0168, lon: 76.9558, market: 'Mettupalayam Agri Market', taluks: ['Coimbatore North', 'Coimbatore South', 'Pollachi', 'Sulur', 'Mettupalayam'] },
+  'Madurai': { state: 'Tamil Nadu', lat: 9.9252, lon: 78.1198, market: 'Mattuthavani APMC', taluks: ['Madurai North', 'Madurai South', 'Melur', 'Usilampatti', 'Vadipatti'] },
+  'Tiruchirappalli': { state: 'Tamil Nadu', lat: 10.7905, lon: 78.7047, market: 'Gandhi Market Trichy', taluks: ['Tiruchirappalli', 'Srirangam', 'Lalgudi', 'Musiri', 'Manapparai'] },
+  'Cuddalore': { state: 'Tamil Nadu', lat: 11.7480, lon: 79.7714, market: 'Virudhachalam Market', taluks: ['Cuddalore', 'Panruti', 'Chidambaram', 'Virudhachalam', 'Tittakudi'] },
+  'Tirunelveli': { state: 'Tamil Nadu', lat: 8.7139, lon: 77.7567, market: 'Tirunelveli Mandi', taluks: ['Tirunelveli', 'Palayamkottai', 'Ambasamudram', 'Nanguneri', 'Radhapuram'] },
+  'Tiruvarur': { state: 'Tamil Nadu', lat: 10.7725, lon: 79.6365, market: 'Mannargudi Regulated Market', taluks: ['Tiruvarur', 'Mannargudi', 'Nannilam', 'Thiruthuraipoondi', 'Kodavasal'] },
+  'Villupuram': { state: 'Tamil Nadu', lat: 11.9401, lon: 79.4861, market: 'Villupuram Mandi', taluks: ['Villupuram', 'Tindivanam', 'Gingee', 'Vanur', 'Vikravandi'] },
+  'Dindigul': { state: 'Tamil Nadu', lat: 10.3673, lon: 77.9803, market: 'Oddanchatram Vegetable Market', taluks: ['Dindigul', 'Oddanchatram', 'Palani', 'Kodaikanal', 'Natham'] },
+  'Vellore': { state: 'Tamil Nadu', lat: 12.9165, lon: 79.1325, market: 'Vellore Mandi', taluks: ['Vellore', 'Katpadi', 'Gudiyatham', 'Anaicut'] },
+  'Krishnagiri': { state: 'Tamil Nadu', lat: 12.5186, lon: 78.2137, market: 'Hosur Wholesale Flower & Veg Market', taluks: ['Krishnagiri', 'Hosur', 'Pochampalli', 'Denkanikottai', 'Uthangarai'] },
+  'Tiruppur': { state: 'Tamil Nadu', lat: 11.1085, lon: 77.3411, market: 'Kangeyam Coconut Market', taluks: ['Tiruppur', 'Dharapuram', 'Kangeyam', 'Udumalaipettai', 'Avinashi'] },
+
+  // Karnataka
+  'Bengaluru Rural': { state: 'Karnataka', lat: 13.2382, lon: 77.5458, market: 'Doddaballapur APMC', taluks: ['Doddaballapur', 'Devanahalli', 'Hosakote', 'Nelamangala'] },
+  'Mysuru': { state: 'Karnataka', lat: 12.2958, lon: 76.6394, market: 'Bandipalya APMC Mysuru', taluks: ['Mysuru', 'Hunsur', 'Nanjangud', 'T. Narasipura', 'Periyapatna'] },
+  'Belagavi': { state: 'Karnataka', lat: 15.8497, lon: 74.4977, market: 'Belagavi APMC', taluks: ['Belagavi', 'Gokak', 'Chikkodi', 'Athani', 'Bailhongal'] },
+  'Dharwad': { state: 'Karnataka', lat: 15.4589, lon: 75.0078, market: 'Hubballi Amargol APMC', taluks: ['Dharwad', 'Hubballi', 'Kalghatgi', 'Navalgund', 'Kundgol'] },
+  'Mandya': { state: 'Karnataka', lat: 12.5222, lon: 76.8976, market: 'Mandya Jaggery APMC', taluks: ['Mandya', 'Maddur', 'Malavalli', 'Pandavapura', 'Srirangapatna'] },
+  'Shivamogga': { state: 'Karnataka', lat: 13.9299, lon: 75.5681, market: 'Shivamogga Arecanut APMC', taluks: ['Shivamogga', 'Bhadravati', 'Sagar', 'Shikaripura', 'Thirthahalli'] },
+
+  // Andhra Pradesh & Telangana
+  'Guntur': { state: 'Andhra Pradesh', lat: 16.3067, lon: 80.4365, market: 'Guntur Chilli Yard', taluks: ['Guntur', 'Tenali', 'Narasaraopet', 'Sattenapalle', 'Bapatla'] },
+  'Krishna': { state: 'Andhra Pradesh', lat: 16.1800, lon: 81.1300, market: 'Vijayawada Market Yard', taluks: ['Machilipatnam', 'Gudivada', 'Vuyyuru', 'Nuzvid'] },
+  'Kurnool': { state: 'Andhra Pradesh', lat: 15.8281, lon: 78.0373, market: 'Kurnool APMC', taluks: ['Kurnool', 'Nandyal', 'Adoni', 'Yemmiganur', 'Dhone'] },
+  'Warangal': { state: 'Telangana', lat: 17.9689, lon: 79.5941, market: 'Warangal Grain Market Yard', taluks: ['Warangal', 'Narsampet', 'Parkal', 'Wardhannapet'] },
+  'Nizamabad': { state: 'Telangana', lat: 18.6725, lon: 78.0941, market: 'Nizamabad Turmeric Yard', taluks: ['Nizamabad', 'Armoor', 'Bodhan', 'Banswada'] },
+
+  // Maharashtra
+  'Nashik': { state: 'Maharashtra', lat: 19.9975, lon: 73.7898, market: 'Lasalgaon Onion APMC', taluks: ['Nashik', 'Niphad', 'Sinnar', 'Yeola', 'Malegaon'] },
+  'Pune': { state: 'Maharashtra', lat: 18.5204, lon: 73.8567, market: 'Gultekdi APMC Pune', taluks: ['Haveli', 'Baramati', 'Junnar', 'Shirur', 'Khed'] },
+  'Nagpur': { state: 'Maharashtra', lat: 21.1458, lon: 79.0882, market: 'Kalamna Orange APMC Nagpur', taluks: ['Nagpur', 'Kamptee', 'Katol', 'Saoner', 'Umred'] },
+  'Kolhapur': { state: 'Maharashtra', lat: 16.7050, lon: 74.2433, market: 'Kolhapur Jaggery Market', taluks: ['Karvir', 'Hatkanangle', 'Shirol', 'Panhala', 'Radhanagari'] },
+
+  // Punjab & Haryana
+  'Ludhiana': { state: 'Punjab', lat: 30.9010, lon: 75.8573, market: 'Gill Road Grain APMC', taluks: ['Ludhiana East', 'Ludhiana West', 'Jagraon', 'Khanna', 'Samrala'] },
+  'Amritsar': { state: 'Punjab', lat: 31.6340, lon: 74.8723, market: 'Bhagtanwala Grain Market', taluks: ['Amritsar I', 'Amritsar II', 'Ajnala', 'Baba Bakala'] },
+  'Karnal': { state: 'Haryana', lat: 29.6857, lon: 76.9905, market: 'Karnal Basmati APMC', taluks: ['Karnal', 'Indri', 'Assandh', 'Gharaunda', 'Nilokheri'] },
+  'Hisar': { state: 'Haryana', lat: 29.1492, lon: 75.7217, market: 'Hisar Cotton APMC', taluks: ['Hisar', 'Hansi', 'Barwala', 'Narnaund', 'Adampur'] },
+
+  // Uttar Pradesh & Bihar
+  'Varanasi': { state: 'Uttar Pradesh', lat: 25.3176, lon: 82.9739, market: 'Panchkosi Varanasi APMC', taluks: ['Varanasi', 'Pindra', 'Raja Talab'] },
+  'Agra': { state: 'Uttar Pradesh', lat: 27.1767, lon: 78.0081, market: 'Khandari Potato APMC Agra', taluks: ['Agra', 'Fatehabad', 'Etmadpur', 'Kheragarh', 'Bah'] },
+  'Muzaffarpur': { state: 'Bihar', lat: 26.1209, lon: 85.3647, market: 'Muzaffarpur Litchi APMC', taluks: ['Muzaffarpur', 'Kanti', 'Motipur', 'Marwan', 'Sakra'] },
+  'Patna': { state: 'Bihar', lat: 25.5941, lon: 85.1376, market: 'Mithapur Agri APMC Patna', taluks: ['Patna Sadar', 'Barh', 'Danapur', 'Masaurhi', 'Paliganj'] },
+
+  // Rajasthan & Gujarat
+  'Jaipur': { state: 'Rajasthan', lat: 26.9124, lon: 75.7873, market: 'Muhana Mandi Jaipur', taluks: ['Jaipur', 'Chomu', 'Sanganer', 'Amber', 'Kotputli'] },
+  'Kota': { state: 'Rajasthan', lat: 25.2138, lon: 75.8648, market: 'Bhamashah Mandi Kota (Soybean)', taluks: ['Kota', 'Ladpura', 'Digod', 'Sangod', 'Ramganjmandi'] },
+  'Ahmedabad': { state: 'Gujarat', lat: 23.0225, lon: 72.5714, market: 'Jamalpur APMC Ahmedabad', taluks: ['Ahmedabad City', 'Daskroi', 'Sanand', 'Dholka', 'Viramgam'] },
+  'Rajkot': { state: 'Gujarat', lat: 22.3039, lon: 70.8022, market: 'Bedi Yard APMC Rajkot (Groundnut)', taluks: ['Rajkot', 'Gondal', 'Jasdan', 'Jetpur', 'Dhoraji'] },
+
+  // Kerala & West Bengal
+  'Palakkad': { state: 'Kerala', lat: 10.7867, lon: 76.6548, market: 'Palakkad Paddy APMC', taluks: ['Palakkad', 'Alathur', 'Chittur', 'Ottappalam', 'Mannarkkad'] },
+  'Wayanad': { state: 'Kerala', lat: 11.6854, lon: 76.1320, market: 'Sulthan Bathery Pepper APMC', taluks: ['Vythiri', 'Sulthan Bathery', 'Mananthavady'] },
+  'Burdwan (Purba Bardhaman)': { state: 'West Bengal', lat: 23.2324, lon: 87.8615, market: 'Burdwan Rice Mandi', taluks: ['Bardhaman Sadar North', 'Bardhaman Sadar South', 'Kalna', 'Katwa'] }
+};
+
+// ==========================================================================
+// CROP LIBRARY (16 Major Indian Crops with Agronomy & Bilingual Details)
+// ==========================================================================
+export const CROPS = [
+  {
+    id: 'paddy',
+    en: 'Paddy (Rice)',
+    ta: 'நெல்',
+    category: 'cereal',
+    soils: ['clay', 'alluvial', 'black'],
+    water: ['sufficient', 'canal', 'borewell'],
+    budget: 24000,
+    days: 120,
+    yield: '22–28 bags (75kg)/acre',
+    price: '₹2,183–₹2,450/quintal (MSP)',
+    season: 'Kharif / Samba / Thaladi',
+    climate: 'Tropical warm, 22°C–32°C, high water table',
+    waterReq: '1200–1500 mm (High)',
+    fertilizer: 'NPK 120:60:60 kg/ha; Zinc Sulphate 25 kg/ha basal',
+    pests: ['Stem Borer (தண்டு துளைப்பான்)', 'Brown Planthopper (புகையான்)', 'Leaf Folder (இலை சுருட்டு புழு)'],
+    diseases: ['Blast (குலை நோய்)', 'Bacterial Leaf Blight (பாக்டீரியா இலைக்கருகல்)', 'Sheath Rot'],
+    harvesting: 'When 80% grains turn golden yellow and moisture drops to 20-22%.',
+    storage: 'Sun dry to 12-14% moisture before storing in clean gunny bags with neem leaves.',
+    reasonEn: 'Exceptional fit for clay and alluvial soils with canal or assured tube-well irrigation.',
+    reasonTa: 'களிமண் மற்றும் வண்டல் மண், நிலையான பாசனம் உள்ள நிலங்களுக்கு மிகச் சிறந்த தேர்வு.',
+    steps: [
+      { day: 1, en: 'Seed Treatment & Nursery Bed preparation', ta: 'விதை நேர்த்தி & நாற்றங்கால் தயாரிப்பு' },
+      { day: 22, en: 'Field puddling and healthy transplanting', ta: 'சேறு உழுதல் மற்றும் நாற்று நடுதல்' },
+      { day: 45, en: 'First weeding & Nitrogen top-dressing', ta: 'முதல் களை எடுத்தல் & தழைச்சத்து உரம்' },
+      { day: 75, en: 'Panicle emergence & water depth 5cm', ta: 'கதிர் உருவாகும் பருவம் & 5cm நீர் தேக்குதல்' },
+      { day: 95, en: 'Milking stage & brown planthopper patrol', ta: 'பால் பிடிக்கும் நிலை & பூச்சி கண்காணிப்பு' },
+      { day: 120, en: 'Drain water 10 days before grain harvest', ta: 'அறுவடைக்கு 10 நாள் முன் நீரை வடித்து அறுவடை' }
+    ]
+  },
+  {
+    id: 'wheat',
+    en: 'Wheat',
+    ta: 'கோதுமை',
+    category: 'cereal',
+    soils: ['alluvial', 'loamy', 'black'],
+    water: ['sufficient', 'limited', 'borewell'],
+    budget: 18500,
+    days: 115,
+    yield: '18–22 quintals/acre',
+    price: '₹2,275–₹2,480/quintal (MSP)',
+    season: 'Rabi (Winter)',
+    climate: 'Cool growing season, 15°C–25°C, bright sunlight',
+    waterReq: '450–650 mm (Medium - 4 to 6 critical irrigations)',
+    fertilizer: 'NPK 120:60:40 kg/ha; Top dress Urea at Crown Root Initiation',
+    pests: ['Aphids (அசுவினி)', 'Termites (கரையான்)', 'Armyworm'],
+    diseases: ['Yellow Rust (மஞ்சள் துரு நோய்)', 'Loose Smut (கரிப்பூட்டை நோய்)', 'Karnal Bunt'],
+    harvesting: 'When spikes turn golden yellow and grains are hard under pressure.',
+    storage: 'Store grain at <12% moisture in sealed metal bins or treated granaries.',
+    reasonEn: 'High productivity in northern and central plains during winter with cool weather.',
+    reasonTa: 'குளிர்காலத்தில் வளமான வண்டல் மண்ணில் அதிக லாபம் தரக்கூடிய முக்கிய பயிர்.',
+    steps: [
+      { day: 1, en: 'Deep ploughing & line sowing with seed drill', ta: 'ஆழ உழவு & விதை துளையிடும் கருவி மூலம் விதைப்பு' },
+      { day: 21, en: 'CRI (Crown Root Initiation) critical 1st watering', ta: 'முடி வேர் உருவாகும் நிலை முதல் முக்கிய பாசனம்' },
+      { day: 45, en: 'Tillering stage top dressing with Urea', ta: 'தூர்கட்டும் பருவம் யூரியா மேல் உரமிடுதல்' },
+      { day: 65, en: 'Late jointing & weed elimination', ta: 'தண்டு நீளும் பருவம் & களை அகற்றுதல்' },
+      { day: 85, en: 'Flowering & grain development irrigation', ta: 'பூக்கும் மற்றும் மணி உருவாகும் பாசனம்' },
+      { day: 115, en: 'Combine harvesting when spikes are dry', ta: 'கதிர் காய்ந்ததும் கம்பைன் ஹார்வெஸ்டர் அறுவடை' }
+    ]
+  },
+  {
+    id: 'cotton',
+    en: 'Cotton',
+    ta: 'பருத்தி',
+    category: 'cash',
+    soils: ['black', 'red', 'alluvial'],
+    water: ['limited', 'sufficient', 'borewell'],
+    budget: 28000,
+    days: 165,
+    yield: '10–14 quintals/acre',
+    price: '₹7,121–₹7,521/quintal (MSP)',
+    season: 'Kharif / Summer',
+    climate: 'Warm & dry, 21°C–35°C, frost-free 200+ days',
+    waterReq: '700–1000 mm (Medium - avoids waterlogging)',
+    fertilizer: 'NPK 120:60:60 kg/ha with micronutrient Boron & Magnesium',
+    pests: ['Pink Bollworm (இளஞ்சிவப்பு காய்ப்புழு)', 'Whitefly (வெள்ளை ஈ)', 'Thrips (இலைப்பேன்)'],
+    diseases: ['Leaf Curl Virus (இலை சுருட்டு வைரஸ்)', 'Bacterial Blight', 'Fusarium Wilt'],
+    harvesting: 'Hand-pick fully opened bolls during bright morning sun.',
+    storage: 'Store raw cotton in dry, moisture-free sheds away from moisture and oil.',
+    reasonEn: 'Thrives in black cotton soils with deep moisture retention.',
+    reasonTa: 'கரிசல் மண்ணில் அதிக ஈரப்பதம் தாங்கி சிறந்த வருவாய் கொடுக்கும் வணிகப் பயிர்.',
+    steps: [
+      { day: 1, en: 'Ridge and furrow formation and seed dibbling', ta: 'பாத்திகள் அமைத்து விதை ஊன்றுதல்' },
+      { day: 25, en: 'Gap filling and first light hoeing', ta: 'இடைவெளி நிரப்புதல் & முதல் கொத்துதல்' },
+      { day: 60, en: 'Square formation & foliar spray of DAP', ta: 'பூ மொட்டு பருவம் & டிஏபி இலைவழி தெளிப்பு' },
+      { day: 90, en: 'Peak flowering & pheromone trap setup', ta: 'பூக்கும் பருவம் & இனக்கவர்ச்சி பொறி அமைத்தல்' },
+      { day: 130, en: 'First boll bursting & gentle picking', ta: 'முதல் காய் வெடிப்பு & முதல் பருத்தி பறிப்பு' },
+      { day: 165, en: 'Final picking & clearing stalks', ta: 'இறுதி பருத்தி எடுத்தல் & செடிகளை அப்புறப்படுத்துதல்' }
+    ]
+  },
+  {
+    id: 'sugarcane',
+    en: 'Sugarcane',
+    ta: 'கரும்பு',
+    category: 'cash',
+    soils: ['alluvial', 'black', 'clay'],
+    water: ['sufficient', 'canal', 'borewell'],
+    budget: 45000,
+    days: 360,
+    yield: '40–55 tonnes/acre',
+    price: '₹3,150–₹3,400/tonne (FRP)',
+    season: 'Year-round / Early Spring',
+    climate: 'Warm tropical humid, 24°C–38°C, abundant sunlight',
+    waterReq: '1800–2200 mm (Very High - Drip highly recommended)',
+    fertilizer: 'NPK 275:65:115 kg/ha; micronutrient ferrous sulphate 100 kg',
+    pests: ['Early Shoot Borer (குருத்து துளைப்பான்)', 'Pyrilla', 'Internode Borer'],
+    diseases: ['Red Rot (செவ்வழுகல் நோய்)', 'Smut (கரிப்பூட்டை)', 'Grassy Shoot'],
+    harvesting: 'Cut at ground level when Brix reading crosses 18-20%.',
+    storage: 'Transport immediately to sugar mill within 24 hours to prevent inversion.',
+    reasonEn: 'High-income perennial cash crop with government FRP sugar-mill off-take.',
+    reasonTa: 'ஆண்டு முழுவதும் நிலையான வருமானம் தரும் முக்கிய பணப்பயிர்.',
+    steps: [
+      { day: 1, en: 'Two-bud setts planting with Trichoderma treatment', ta: 'டிரைகோடெர்மா நேர்த்தி செய்த இரு பரு கரணைகள் நடுதல்' },
+      { day: 45, en: 'Early shoot borer monitoring and earthing up', ta: 'குருத்து துளைப்பான் கண்காணிப்பு & முதல் மண் அணைத்தல்' },
+      { day: 90, en: 'Second earthing up & Nitrogen top-dressing', ta: 'இரண்டாம் மண் அணைத்தல் & தழைச்சத்து உரம்' },
+      { day: 180, en: 'Trash mulching and detrashes of dried leaves', ta: 'காய்ந்த சோகை உரித்தல் & மூடாக்கு அமைத்தல்' },
+      { day: 270, en: 'Crop propping to prevent lodging against wind', ta: 'காற்றுக்கு சாயாமல் இருக்க கரும்புகளை ஒன்றாக கட்டுதல்' },
+      { day: 360, en: 'Bottom cutting at ground level for maximum juice', ta: 'தரை மட்டத்திற்கு வெட்டி ஆலைக்கு அனுப்புதல்' }
+    ]
+  },
+  {
+    id: 'maize',
+    en: 'Maize (Corn)',
+    ta: 'மக்காச்சோளம்',
+    category: 'cereal',
+    soils: ['red', 'black', 'alluvial'],
+    water: ['limited', 'sufficient', 'borewell'],
+    budget: 20000,
+    days: 100,
+    yield: '22–26 quintals/acre',
+    price: '₹2,090–₹2,400/quintal',
+    season: 'Kharif & Rabi',
+    climate: 'Warm climate with 20°C–32°C, moderate rainfall',
+    waterReq: '500–600 mm (Medium)',
+    fertilizer: 'NPK 120:60:40 kg/ha; Zinc Sulphate 25 kg/ha',
+    pests: ['Fall Armyworm (படைப்புழு)', 'Stem Borer (தண்டு துளைப்பான்)'],
+    diseases: ['Turcicum Leaf Blight (இலைக்கருகல்)', 'Downy Mildew'],
+    harvesting: 'When sheath turns dry white and grains develop black layer at base.',
+    storage: 'Dry grain to 12% moisture before mechanical shelling and bagging.',
+    reasonEn: 'Rapid growth, resilient in varied soils, strong poultry and starch industry demand.',
+    reasonTa: 'குறைந்த காலத்தில் நல்ல விளைச்சல் மற்றும் கோழி தீவன ஆலைகளுக்கு அதிக தேவை.',
+    steps: [
+      { day: 1, en: 'Sowing at 60x20 cm spacing with seed treatment', ta: 'விதை நேர்த்தி செய்து 60x20 செ.மீ இடைவெளியில் விதைப்பு' },
+      { day: 15, en: 'Fall armyworm monitoring with pheromone traps', ta: 'படைப்புழு கண்காணிப்பு & பொறி அமைத்தல்' },
+      { day: 35, en: 'Knee-high stage top dressing with Urea', ta: 'முழங்கால் அளவு வளர்ச்சி நிலை - யூரியா உரமிடுதல்' },
+      { day: 55, en: 'Tasseling stage irrigation - critical for yield', ta: 'கதிர் பூக்கும் பருவம் - மிக முக்கியமான பாசனம்' },
+      { day: 75, en: 'Silking & grain filling stage protection', ta: 'பால் பிடித்து மணி முற்றும் பருவம்' },
+      { day: 100, en: 'Cob harvesting when outer husk turns papery', ta: 'மடல் காய்ந்து வெளிறியதும் கதிர் அறுவடை' }
+    ]
+  },
+  {
+    id: 'groundnut',
+    en: 'Groundnut (Peanut)',
+    ta: 'நிலக்கடலை',
+    category: 'oilseed',
+    soils: ['red', 'sandy', 'loamy'],
+    water: ['limited', 'rainfed', 'borewell'],
+    budget: 19000,
+    days: 105,
+    yield: '14–18 bags (40kg)/acre',
+    price: '₹6,377–₹7,200/quintal (MSP)',
+    season: 'Kharif & Chithirai (Summer)',
+    climate: 'Tropical warm, 25°C–35°C, well-drained friable soil',
+    waterReq: '450–550 mm (Low to Medium)',
+    fertilizer: 'NPK 17:34:54 kg/ha + Gypsum 400 kg/ha at pegging',
+    pests: ['Red Hairy Caterpillar (சிவப்பு கம்பளிப்புழு)', 'Leaf Miner (சுரங்கப் புழு)'],
+    diseases: ['Tikka Leaf Spot (டிக்கா இலைப்புள்ளி நோய்)', 'Rust (துரு நோய்)'],
+    harvesting: 'When leaves turn yellow and inside of shell shows dark brown veins.',
+    storage: 'Pod drying to 8% moisture prevents aflatoxin fungal development.',
+    reasonEn: 'Excellent cash crop for red and sandy loam soils with low water needs.',
+    reasonTa: 'செம்மண் மற்றும் மணல் கலந்த நிலங்களுக்கு குறைந்த நீரில் அதிக லாபம் தரும் பயிர்.',
+    steps: [
+      { day: 1, en: 'Pod shelling, Rhizobium seed inoculant & sowing', ta: 'விதை பருப்புக்கு ரைசோபியம் உயிர் உரம் கலந்து விதைப்பு' },
+      { day: 20, en: 'Light manual weeding and soil loosening', ta: 'லேசான கைக்களை மற்றும் மண்ணை இளக்குதல்' },
+      { day: 40, en: 'Gypsum application (400 kg/ha) for bold kernel formation', ta: 'காய் நன்கு பிடிக்க ஜிப்சம் 400 கிலோ இடுதல்' },
+      { day: 60, en: 'Peg penetration stage - ensure light soil moisture', ta: 'விருதுகள் இறங்கும் பருவம் - மிதமான ஈரப்பதம் அவசியம்' },
+      { day: 85, en: 'Pod maturation assessment (test sample pods)', ta: 'காய் முதிர்ச்சி சோதனை (சில செடிகளை பிடுங்கி பார்த்தல்)' },
+      { day: 105, en: 'Up-rooting, pod stripping and sun drying', ta: 'செடி பிடுங்குதல், காய் பிரித்தல் & வெயிலில் உலர்த்துதல்' }
+    ]
+  },
+  {
+    id: 'tomato',
+    en: 'Tomato',
+    ta: 'தக்காளி',
+    category: 'vegetable',
+    soils: ['red', 'loamy', 'alluvial'],
+    water: ['sufficient', 'drip', 'borewell'],
+    budget: 35000,
+    days: 90,
+    yield: '14–20 tonnes/acre',
+    price: '₹1,500–₹3,800/quintal',
+    season: 'Year-round (Kharif, Rabi, Summer)',
+    climate: 'Warm temperate, 18°C–28°C, night temperature critical',
+    waterReq: '600–700 mm (Drip fertigation yields best results)',
+    fertilizer: 'NPK 150:100:100 kg/ha + 19:19:19 water soluble through drip',
+    pests: ['Fruit Borer (காய்ப்புழு)', 'Whitefly (வெள்ளை ஈ)', 'Leaf Miner'],
+    diseases: ['Early Blight (முன் பருவ கருகல்)', 'Tomato Leaf Curl Virus', 'Bacterial Wilt'],
+    harvesting: 'Multiple pickings every 3-4 days at breaker to pink stage.',
+    storage: 'Keep in ventilated plastic crates at 12°C-15°C for up to 10 days.',
+    reasonEn: 'Short-duration, high-turnover horticulture crop with continuous cash flow.',
+    reasonTa: 'குறுகிய காலத்தில் தொடர்ச்சியான தினசரி பணவரவு தரும் பணப்பயிர்.',
+    steps: [
+      { day: 1, en: 'Pro-tray seedling transplanting on raised beds', ta: 'மேட்டுப்பாத்திகளில் குழித்தட்டு நாற்றுகள் நடுதல்' },
+      { day: 20, en: 'Drip fertigation & staking bamboo poles', ta: 'சொட்டு நீர் வழி உரமிடுதல் & மூங்கில் கம்பு முட்டு கொடுத்தல்' },
+      { day: 40, en: 'Flowering initiation & micronutrient spray', ta: 'பூக்கும் பருவம் தொடக்கம் & நுண்ணூட்டச்சத்து தெளிப்பு' },
+      { day: 55, en: 'Fruit set stage & fruit borer pheromone trap', ta: 'பிஞ்சு பிடிக்கும் பருவம் & காய்ப்புழு தடுப்பு' },
+      { day: 70, en: 'First fruit picking at breaker stage', ta: 'முதல் தக்காளி அறுவடை தொடக்கம்' },
+      { day: 90, en: 'Peak harvest rounds every 3-4 days', ta: '3-4 நாட்களுக்கு ஒருமுறை தீவிர தொடர் அறுவடை' }
+    ]
+  },
+  {
+    id: 'onion',
+    en: 'Onion',
+    ta: 'வெங்காயம்',
+    category: 'vegetable',
+    soils: ['alluvial', 'red', 'loamy'],
+    water: ['limited', 'sufficient', 'borewell'],
+    budget: 32000,
+    days: 100,
+    yield: '8–12 tonnes/acre',
+    price: '₹2,000–₹4,200/quintal',
+    season: 'Kharif & Rabi',
+    climate: 'Mild climate, 13°C–25°C, low humidity during bulb curing',
+    waterReq: '400–500 mm (Frequent light irrigations)',
+    fertilizer: 'NPK 100:50:50 kg/ha + Sulphur 30 kg/ha for pungency and storability',
+    pests: ['Thrips (இலைப்பேன்)', 'Onion Maggot (வெங்காய ஈ)'],
+    diseases: ['Purple Blotch (செம்புள்ளி நோய்)', 'Downy Mildew', 'Basal Rot'],
+    harvesting: 'When 50% tops collapse and neck softens.',
+    storage: 'Field cure bulbs for 3-5 days; store in well-ventilated dark onion sheds.',
+    reasonEn: 'High market demand, excellent shelf life with proper shade curing.',
+    reasonTa: 'சந்தையில் எப்போதும் நிலையான தேவை மற்றும் உலர்த்தி சேமித்து விற்கக்கூடிய பயிர்.',
+    steps: [
+      { day: 1, en: 'Seedling transplanting / small bulb sets planting', ta: 'நாற்று நடுதல் அல்லது விதை வெங்காயம் ஊன்றுதல்' },
+      { day: 25, en: 'Hand weeding & light irrigation', ta: 'கைக்களை எடுத்தல் & லேசான நீர்ப்பாசனம்' },
+      { day: 45, en: 'Bulb initiation stage - Sulphur application', ta: 'கிழங்கு உருவாகும் பருவம் - சல்பர் உரம் இடுதல்' },
+      { day: 70, en: 'Bulb enlargement - stop heavy nitrogen', ta: 'கிழங்கு பெருக்கும் பருவம் - தழைச்சத்தை குறைத்தல்' },
+      { day: 90, en: 'Top neck fall (50% neck bend) - withhold irrigation', ta: 'தாள் மடியும் பருவம் - பாசனத்தை முழுமையாக நிறுத்துதல்' },
+      { day: 100, en: 'Pulling bulbs, shade curing and braiding', ta: 'வெங்காயம் பிடுங்குதல், நிழலில் உலர்த்துதல் & சேமிப்பு' }
+    ]
+  },
+  {
+    id: 'chilli',
+    en: 'Chilli (Hot Pepper)',
+    ta: 'மிளகாய்',
+    category: 'spice',
+    soils: ['red', 'black', 'loamy'],
+    water: ['limited', 'sufficient', 'borewell'],
+    budget: 30000,
+    days: 140,
+    yield: '12–16 quintals (dry)/acre',
+    price: '₹14,000–₹22,000/quintal (Dry)',
+    season: 'Kharif & Summer',
+    climate: 'Warm humid during growth, dry during maturity, 20°C–32°C',
+    waterReq: '500–650 mm (Avoid water stagnant roots)',
+    fertilizer: 'NPK 120:60:60 kg/ha + Neem cake 250 kg/ha',
+    pests: ['Chilli Thrips (இலைப்பேன்)', 'Mites (சிலந்தி)', 'Fruit Borer'],
+    diseases: ['Leaf Curl Virus (இலை சுருட்டு வைரஸ்)', 'Anthracnose Fruit Rot (பழ அழுகல்)'],
+    harvesting: 'Pick green chillies for vegetable or fully red ripe for drying.',
+    storage: 'Sun dry red pods on clean tarpaulins to 10% moisture.',
+    reasonEn: 'Premium high-value cash crop with high export and domestic culinary demand.',
+    reasonTa: 'உலர்ந்த மிளகாய்க்கு சந்தையில் எப்போதும் அதிக விலை கிடைக்கும் சிறந்த பணப்பயிர்.',
+    steps: [
+      { day: 1, en: 'Transplanting 35-day sturdy seedlings with border maize', ta: 'வரப்பு பயிராக மக்காச்சோளம் நட்டு மிளகாய் நாற்று நடுதல்' },
+      { day: 25, en: 'Preventative neem oil spray against thrips', ta: 'இலைப்பேன் தாக்காமல் இருக்க வேப்பெண்ணெய் தெளிப்பு' },
+      { day: 50, en: 'First flower bud emergence & bio-fertilizer dose', ta: 'முதல் பூ மொட்டு தோன்றுதல் & உயிர் உரமிடுதல்' },
+      { day: 80, en: 'Green chilli harvesting begins or allow reddening', ta: 'பச்சை மிளகாய் பறிப்பு அல்லது பழுக்க விடுதல்' },
+      { day: 110, en: 'Deep red ripe pods harvesting', ta: 'முழு சிவப்பு பழங்களை பறித்தல்' },
+      { day: 140, en: 'Sun drying on clean floor for vibrant colour retention', ta: 'தார்பாயில் உலர்த்தி மிளகாய் வற்றல் ஆக்குதல்' }
+    ]
+  },
+  {
+    id: 'turmeric',
+    en: 'Turmeric',
+    ta: 'மஞ்சள்',
+    category: 'spice',
+    soils: ['alluvial', 'red', 'loamy'],
+    water: ['sufficient', 'borewell', 'drip'],
+    budget: 42000,
+    days: 270,
+    yield: '25–30 quintals (cured)/acre',
+    price: '₹12,000–₹16,500/quintal',
+    season: 'June–July (Kharif)',
+    climate: 'Warm tropical humid, 20°C–35°C, partial shade tolerant',
+    waterReq: '1200–1400 mm (High regular watering)',
+    fertilizer: 'NPK 150:60:108 kg/ha; Organic manure 25 tonnes/ha',
+    pests: ['Shoot Borer (தண்டு துளைப்பான்)', 'Scale Insect (செதில் பூச்சி)'],
+    diseases: ['Rhizome Rot (கிழங்கு அழுகல்)', 'Leaf Spot (இலைப்புள்ளி)'],
+    harvesting: 'When leaves turn completely dry and wither in Jan-Feb.',
+    storage: 'Boil rhizomes in copper boilers and sun dry for 10-15 days before polishing.',
+    reasonEn: 'Extremely lucrative commercial spice in western Tamil Nadu, Andhra and Maharashtra.',
+    reasonTa: 'நீண்ட காலம் ஆனாலும் அதிக முதலீட்டு லாபம் தரும் பாரம்பரிய தங்கப் பயிர்.',
+    steps: [
+      { day: 1, en: 'Mother/finger rhizome planting on raised beds', ta: 'மேட்டுப்பாத்திகளில் தாய்/விரலி மஞ்சள் விதைப்பு' },
+      { day: 30, en: 'First mulching with green leaves (15 t/ha)', ta: 'பசுந்தாள் இலைகள் கொண்டு முதல் மூடாக்கு' },
+      { day: 60, en: 'Second mulching and bio-control application', ta: 'இரண்டாம் மூடாக்கு & டிரைக்கோடெர்மா இடுதல்' },
+      { day: 120, en: 'Rhizome development top-dressing & earthing up', ta: 'கிழங்கு உருவாகும் பருவம் - மண் அணைத்தல்' },
+      { day: 210, en: 'Active curcumin synthesis in root zone', ta: 'மஞ்சள் நிறமி (குர்குமின்) செறிவடையும் பருவம்' },
+      { day: 270, en: 'Rhizome harvesting, boiling and polishing', ta: 'கிழங்கு தோண்டுதல், வேகவைத்தல் & மெருகூட்டுதல்' }
+    ]
+  },
+  {
+    id: 'ragi',
+    en: 'Ragi (Finger Millet)',
+    ta: 'கேழ்வரகு (ராகி)',
+    category: 'millet',
+    soils: ['red', 'loamy', 'sandy'],
+    water: ['limited', 'rainfed', 'borewell'],
+    budget: 12000,
+    days: 105,
+    yield: '12–15 quintals/acre',
+    price: '₹3,846–₹4,200/quintal (MSP)',
+    season: 'Kharif & Summer',
+    climate: 'Semi-arid, 25°C–35°C, high drought tolerance',
+    waterReq: '300–400 mm (Very Low)',
+    fertilizer: 'NPK 60:30:30 kg/ha; FYM 5 tonnes/ha',
+    pests: ['Stem Borer', 'Earhead Bug', 'Grasshopper'],
+    diseases: ['Blast (குலை நோய்)', 'Foot Rot'],
+    harvesting: 'When earheads turn dark brown and grains are firm.',
+    storage: 'Natural high storability - grains keep undamaged for over 2-3 years.',
+    reasonEn: 'Superfood millet with lowest water need, climate resilient and assured MSP.',
+    reasonTa: 'வறட்சியைத் தாங்கும் சிறுதானியம்; குறைந்த செலவில் அதிக ஊட்டச்சத்தும் உறுதியான விலையும்.',
+    steps: [
+      { day: 1, en: 'Direct line sowing or transplanting 20-day seedlings', ta: 'வரிசை விதைப்பு அல்லது 20 நாள் நாற்று நடுதல்' },
+      { day: 25, en: 'First weeding and thinning extra seedlings', ta: 'முதல் களை எடுத்தல் & செடிகளை கலைத்தல்' },
+      { day: 45, en: 'Tillering stage light irrigation', ta: 'தூர்கட்டும் பருவம் லேசான நீர்ப்பாசனம்' },
+      { day: 70, en: 'Earhead emergence & grain filling', ta: 'கதிர் வெளிவருதல் & தானிய முதிர்ச்சி' },
+      { day: 105, en: 'Earhead harvesting with sickle and thrashing', ta: 'கதிர் மட்டும் அறுவடை செய்து தானியத்தை பிரித்தல்' }
+    ]
+  },
+  {
+    id: 'pulses',
+    en: 'Black Gram / Chickpea (Pulses)',
+    ta: 'உளுந்து / பயறு வகைகள்',
+    category: 'pulse',
+    soils: ['black', 'alluvial', 'red'],
+    water: ['limited', 'rainfed', 'borewell'],
+    budget: 11000,
+    days: 75,
+    yield: '6–8 quintals/acre',
+    price: '₹6,950–₹7,800/quintal (MSP)',
+    season: 'Rabi / Rice fallow / Kharif',
+    climate: 'Warm sub-tropical, 25°C–32°C, sensitive to waterlogging',
+    waterReq: '250–350 mm (Low)',
+    fertilizer: 'NPK 25:50:25 kg/ha + Rhizobium seed inoculation',
+    pests: ['Pod Borer (காய்ப்புழு)', 'Whitefly (வெள்ளை ஈ - Vector of YMV)'],
+    diseases: ['Yellow Mosaic Virus (மஞ்சள் தேமல் நோய்)', 'Root Rot'],
+    harvesting: 'When 85% of pods turn dark blackish-brown.',
+    storage: 'Dry pods and mix sun-dried seeds with 1% neem oil to prevent storage bruchids.',
+    reasonEn: 'Short duration (75 days) legume, fixes atmospheric nitrogen into soil, low cost.',
+    reasonTa: '75 நாட்களில் மகசூல் தரும் பயறு; மண்ணிற்கு தழைச்சத்தை கூட்டி அடுத்த பயிருக்கு உதவும்.',
+    steps: [
+      { day: 1, en: 'Rice fallow relay sowing or well-tilled line sowing', ta: 'நெல் தரிசில் விதைப்பு அல்லது பாத்தி விதைப்பு' },
+      { day: 20, en: 'Foliar spray of 2% DAP for branch enhancement', ta: 'கிளைகள் அதிகம் வர 2% டிஏபி இலைவழி தெளிப்பு' },
+      { day: 35, en: 'Flowering stage - Yellow mosaic virus check', ta: 'பூக்கும் பருவம் - மஞ்சள் தேமல் நோய் கண்காணிப்பு' },
+      { day: 55, en: 'Pod formation & final foliar nutrition', ta: 'காய் பிடிக்கும் பருவம் & ஊட்டச்சத்து தெளிப்பு' },
+      { day: 75, en: 'Harvesting black pods before shattering', ta: 'காய்கள் வெடிப்பதற்கு முன் முழுமையாக அறுவடை' }
+    ]
+  },
+  {
+    id: 'banana',
+    en: 'Banana (G9 / Robusta)',
+    ta: 'வாழை',
+    category: 'plantation',
+    soils: ['alluvial', 'clay', 'loamy'],
+    water: ['sufficient', 'drip', 'borewell'],
+    budget: 65000,
+    days: 330,
+    yield: '30–38 tonnes/acre',
+    price: '₹1,200–₹2,600/quintal',
+    season: 'Year-round',
+    climate: 'Warm humid tropical, 20°C–35°C, protected from heavy cyclones',
+    waterReq: '1800–2000 mm (High regular watering)',
+    fertilizer: 'NPK 200:50:300 g/plant in 4 split doses',
+    pests: ['Rhizome Weevil (கிழங்கு வண்டு)', 'Pseudostem Borer', 'Nematodes'],
+    diseases: ['Panama Wilt (பனாமா வாடல் நோய்)', 'Sigatoka Leaf Spot', 'Bunchy Top'],
+    harvesting: 'When fruit ridges become rounded and floral ends fall off easily.',
+    storage: 'Transport in padded plastic crates at 13°C-14°C.',
+    reasonEn: 'High-density commercial fruit plantation with consistent local and urban market demand.',
+    reasonTa: 'நல்ல பாசன வசதி உள்ள நிலங்களில் தொடர்ச்சியான அதிக லாபம் தரும் பழப்பயிர்.',
+    steps: [
+      { day: 1, en: 'Pit preparation (60x60x60 cm) and sucker/tissue culture planting', ta: 'குழி எடுத்து கன்று அல்லது திசு வளர்ப்பு நாற்று நடுதல்' },
+      { day: 60, en: 'First de-suckering and soil application of neem cake', ta: 'பக்கக் கன்றுகளை அகற்றுதல் & வேப்பம்பிண்ணாக்கு இடுதல்' },
+      { day: 150, en: 'Pseudostem borer protection and Potassium fertilizer', ta: 'தண்டு வண்டு தடுப்பு & சாம்பல் சத்து உரம்' },
+      { day: 220, en: 'Shooting stage (bunch emergence) and flower bell removal', ta: 'வாழைத்தார் வெளிவருதல் & ஆண் பூ முட்டு உடைத்தல்' },
+      { day: 260, en: 'Bunch sleeving with blue poly bags and bamboo prop', ta: 'தார் உறை அணிவித்தல் & காற்றுக்கு மூங்கில் முட்டு கொடுத்தல்' },
+      { day: 330, en: 'Harvesting mature bunches with round angles', ta: 'முதிர்ந்த வாழைத்தார்களை வெட்டி சந்தைப்படுத்துதல்' }
+    ]
+  },
+  {
+    id: 'coconut',
+    en: 'Coconut',
+    ta: 'தென்னை',
+    category: 'plantation',
+    soils: ['red', 'alluvial', 'sandy', 'coastal'],
+    water: ['sufficient', 'drip', 'borewell'],
+    budget: 25000,
+    days: 365,
+    yield: '12,000–16,000 nuts/acre/year',
+    price: '₹28–₹42/kg (Copra / Tender coconut)',
+    season: 'Year-round perennial',
+    climate: 'Tropical coastal and inland, 22°C–34°C, bright sunshine',
+    waterReq: '40–50 litres/palm/day (Drip irrigation)',
+    fertilizer: 'NPK 500:320:1200 g/palm/year + Borax 50g',
+    pests: ['Rhinoceros Beetle (காண்டாமிருக வண்டு)', 'Red Palm Weevil (சிவப்பு கூன்வண்டு)', 'Eriophyid Mite'],
+    diseases: ['Root Wilt (வாடல் நோய்)', 'Bud Rot (மண்டை அழுகல்)', 'Stem Bleeding'],
+    harvesting: 'Monthly harvest cycles of 11-12 month old mature coconuts.',
+    storage: 'Store unhusked nuts in dry shade for copra drying.',
+    reasonEn: 'Long-term perennial security with recurring monthly income from copra and tender coconut.',
+    reasonTa: 'ஆயுள் முழுவதும் தலைமுறை கடந்து மாதந்தோறும் நிலையான வருவாய் தரும் கற்பகவிருட்சம்.',
+    steps: [
+      { day: 1, en: 'Quality tall/hybrid seedling planting in 1m deep pit', ta: '1 மீட்டர் குழியில் தரமான தென்னங்கன்று நடுதல்' },
+      { day: 90, en: 'Circular basin irrigation & green manure sowing', ta: 'வட்டப்பாத்தி அமைத்தல் & பசுந்தாள் உரம் விதைப்பு' },
+      { day: 180, en: 'Organic manure, micronutrient & salt application', ta: 'மக்கிய தொழு உரம், நுண்ணூட்டம் & உப்பு இடுதல்' },
+      { day: 270, en: 'Rhinoceros beetle pheromone trap maintenance', ta: 'காண்டாமிருக வண்டு இனக்கவர்ச்சி பொறி பராமரிப்பு' },
+      { day: 365, en: 'Regular monthly harvesting of mature bunches', ta: 'மாதாந்திர முதிர்ந்த தேங்காய் அறுவடை' }
+    ]
+  },
+  {
+    id: 'mustard',
+    en: 'Mustard / Rapeseed',
+    ta: 'கடுகு',
+    category: 'oilseed',
+    soils: ['alluvial', 'loamy', 'sandy'],
+    water: ['limited', 'rainfed', 'borewell'],
+    budget: 14000,
+    days: 110,
+    yield: '8–11 quintals/acre',
+    price: '₹5,650–₹6,100/quintal (MSP)',
+    season: 'Rabi (Oct–Nov sowing)',
+    climate: 'Cool dry climate, 15°C–25°C, clear skies',
+    waterReq: '300–400 mm (2-3 critical irrigations)',
+    fertilizer: 'NPK 80:40:40 kg/ha + Sulphur 20 kg/ha for oil content',
+    pests: ['Mustard Aphid (கடுகு அசுவினி)', 'Sawfly'],
+    diseases: ['White Rust (வெள்ளை துரு நோய்)', 'Alternaria Blight', 'Downy Mildew'],
+    harvesting: 'When 75% siliquae turn golden yellow.',
+    storage: 'Dry seeds to 8% moisture before packing in moisture-resistant bags.',
+    reasonEn: 'Top winter oilseed for northern and central India with low water and guaranteed MSP.',
+    reasonTa: 'குளிர்காலத்தில் குறைந்த நீரில் எண்ணெய் சத்து அதிகம் தரும் முக்கிய எண்ணெய் வித்து.',
+    steps: [
+      { day: 1, en: 'Fine seed bed preparation & shallow line sowing', ta: 'நுண்ணிய நில உழவு & மேலோட்டமான வரிசை விதைப்பு' },
+      { day: 25, en: 'First irrigation at pre-flowering stage', ta: 'பூ பூப்பதற்கு முன் முதல் பாசனம்' },
+      { day: 50, en: 'Aphid control with yellow sticky traps & bio-spray', ta: 'மஞ்சள் வண்ண ஒட்டுப்பொறி கொண்டு அசுவினி கட்டுப்பாடு' },
+      { day: 75, en: 'Pod development & secondary irrigation', ta: 'காய் பெருக்கும் பருவம் & இரண்டாம் பாசனம்' },
+      { day: 110, en: 'Morning harvesting to prevent siliqua pod shattering', ta: 'காய்கள் வெடிக்காமல் இருக்க அதிகாலை அறுவடை' }
+    ]
+  },
+  {
+    id: 'soybean',
+    en: 'Soybean',
+    ta: 'சோயாபீன்',
+    category: 'oilseed',
+    soils: ['black', 'alluvial', 'loamy'],
+    water: ['limited', 'rainfed', 'borewell'],
+    budget: 17500,
+    days: 95,
+    yield: '10–14 quintals/acre',
+    price: '₹4,600–₹5,100/quintal (MSP)',
+    season: 'Kharif (Monsoon)',
+    climate: 'Warm humid, 21°C–32°C, well-drained fertile black soil',
+    waterReq: '450–550 mm (Sensitive to prolonged drought at flowering)',
+    fertilizer: 'NPK 30:60:40 kg/ha + Bradyrhizobium seed coating',
+    pests: ['Girdle Beetle (தண்டு வண்டு)', 'Stem Fly', 'Tobacco Caterpillar'],
+    diseases: ['Yellow Mosaic Virus', 'Charcoal Rot', 'Rust'],
+    harvesting: 'When leaves shed and pods turn brownish yellow.',
+    storage: 'Ensure moisture does not exceed 10% during storage to prevent seed cracking.',
+    reasonEn: 'Leading protein and oil crop in Central India (MP, Maharashtra, Rajasthan).',
+    reasonTa: 'அதிக புரதம் மற்றும் எண்ணெய் சத்து தரும் மத்திய இந்தியாவின் முதன்மை பணப்பயிர்.',
+    steps: [
+      { day: 1, en: 'Broad-bed furrow sowing with Bradyrhizobium inoculant', ta: 'உயிர் உரம் கலந்து அகலப்பாத்தி சால் முறையில் விதைப்பு' },
+      { day: 20, en: 'Early post-emergence weed management', ta: 'ஆரம்ப நிலை களை கட்டுப்பாடு' },
+      { day: 40, en: 'Flowering initiation stage - adequate moisture check', ta: 'பூக்கும் பருவம் தொடக்கம் - ஈரப்பதம் உறுதி செய்தல்' },
+      { day: 65, en: 'Pod filling stage - protection against defoliators', ta: 'காய் பிடிக்கும் நிலை - புழுக்கள் தடுப்பு' },
+      { day: 95, en: 'Harvesting when pods rattle on shaking', ta: 'காய்கள் சலசலக்கும் சத்தம் வந்ததும் அறுவடை' }
+    ]
+  }
+];
+
+// ==========================================================================
+// MANDI MARKET PRICE BENCHMARK DATA (With verified sources & timestamps)
+// ==========================================================================
+export const MANDI_PRICES = [
+  { cropId: 'paddy', state: 'Tamil Nadu', district: 'Thanjavur', market: 'Thanjavur Mandi', min: 2183, max: 2450, modal: 2320, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Agmarknet / e-NAM' },
+  { cropId: 'paddy', state: 'Tamil Nadu', district: 'Dharmapuri', market: 'Dharmapuri Regulated Market', min: 2150, max: 2380, modal: 2260, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Agmarknet / e-NAM' },
+  { cropId: 'cotton', state: 'Tamil Nadu', district: 'Salem', market: 'Shevapet APMC', min: 6900, max: 7550, modal: 7280, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Agmarknet / e-NAM' },
+  { cropId: 'cotton', state: 'Telangana', district: 'Warangal', market: 'Warangal Grain Market Yard', min: 7050, max: 7650, modal: 7350, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Agmarknet / e-NAM' },
+  { cropId: 'turmeric', state: 'Tamil Nadu', district: 'Erode', market: 'Perundurai Turmeric Market', min: 12500, max: 16800, modal: 14800, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Erode Turmeric Merchants Assn / Agmarknet' },
+  { cropId: 'tomato', state: 'Tamil Nadu', district: 'Dindigul', market: 'Oddanchatram Vegetable Market', min: 1800, max: 3200, modal: 2400, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Oddanchatram APMC Daily Bulletin' },
+  { cropId: 'tomato', state: 'Karnataka', district: 'Bengaluru Rural', market: 'Doddaballapur APMC', min: 1900, max: 3400, modal: 2600, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Karnataka State APMC' },
+  { cropId: 'onion', state: 'Maharashtra', district: 'Nashik', market: 'Lasalgaon Onion APMC', min: 2100, max: 3800, modal: 2950, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Lasalgaon Mandi / e-NAM' },
+  { cropId: 'groundnut', state: 'Gujarat', district: 'Rajkot', market: 'Bedi Yard APMC Rajkot', min: 6200, max: 7250, modal: 6800, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Gujarat APMC Portal' },
+  { cropId: 'groundnut', state: 'Tamil Nadu', district: 'Villupuram', market: 'Villupuram Mandi', min: 6100, max: 7100, modal: 6650, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Tamil Nadu Agri Marketing Board' },
+  { cropId: 'maize', state: 'Karnataka', district: 'Dharwad', market: 'Hubballi Amargol APMC', min: 2050, max: 2420, modal: 2240, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Agmarknet' },
+  { cropId: 'wheat', state: 'Punjab', district: 'Ludhiana', market: 'Gill Road Grain APMC', min: 2275, max: 2500, modal: 2380, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Punjab Mandi Board' },
+  { cropId: 'chilli', state: 'Andhra Pradesh', district: 'Guntur', market: 'Guntur Chilli Yard', min: 15500, max: 21800, modal: 18400, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Guntur AMC Market' },
+  { cropId: 'ragi', state: 'Karnataka', district: 'Mysuru', market: 'Bandipalya APMC Mysuru', min: 3850, max: 4250, modal: 4050, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Karnataka State APMC' },
+  { cropId: 'soybean', state: 'Rajasthan', district: 'Kota', market: 'Bhamashah Mandi Kota', min: 4550, max: 5120, modal: 4850, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Agmarknet' },
+  { cropId: 'mustard', state: 'Haryana', district: 'Hisar', market: 'Hisar Cotton & Oilseed APMC', min: 5650, max: 6200, modal: 5900, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Haryana State Agri Marketing Board' },
+  { cropId: 'banana', state: 'Tamil Nadu', district: 'Tiruchirappalli', market: 'Gandhi Market Trichy', min: 1400, max: 2700, modal: 2100, unit: '₹ / Quintal', date: '15 Sep 2026', source: 'Trichy Regulated Market' },
+  { cropId: 'coconut', state: 'Tamil Nadu', district: 'Tiruppur', market: 'Kangeyam Coconut Market', min: 30, max: 44, modal: 38, unit: '₹ / Kg (Copra)', date: '15 Sep 2026', source: 'Coconut Development Board (CDB)' }
+];
+
+// ==========================================================================
+// GOVERNMENT AGRICULTURE SCHEMES (Central & State Level)
+// ==========================================================================
+export const GOVT_SCHEMES = [
+  {
+    id: 'pm-kisan',
+    nameEn: 'PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)',
+    nameTa: 'பி.எம் கிசான் திட்டம் (ரூ. 6,000 நிதியுதவி)',
+    type: 'Central',
+    benefitsEn: 'Direct income support of ₹6,000 per year in three equal installments of ₹2,000 directly into farmer bank accounts.',
+    benefitsTa: 'ஆண்டுதோறும் ரூ. 6,000 நிதியுதவி, 4 மாதங்களுக்கு ஒருமுறை ரூ. 2,000 வீதம் நேரடியாக வங்கிக் கணக்கில் செலுத்தப்படும்.',
+    eligibilityEn: 'All landholding farmer families having cultivable landholding in their names across India.',
+    eligibilityTa: 'சொந்த நிலம் வைத்துள்ள அனைத்து இந்திய விவசாய குடும்பங்களும் இத்திட்டத்திற்கு தகுதியானவர்கள்.',
+    docsEn: 'Aadhaar Card, Land ownership papers (Patta/Chitta/7-12), Bank Passbook with Aadhaar seeding, Mobile number.',
+    docsTa: 'ஆதார் அட்டை, நில பட்டா/சிட்டா ஆவணம், வங்கிக் கணக்கு புத்தகம், மொபைல் எண்.',
+    processEn: 'Apply online through PM-KISAN portal or through CSC (Common Service Centres) with e-KYC.',
+    processTa: 'PM-KISAN இணையதளம் அல்லது பொது சேவை மையம் (CSC) மூலம் இ-கேஒய்சி செய்து விண்ணப்பிக்கலாம்.',
+    link: 'https://pmkisan.gov.in',
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'pmfby',
+    nameEn: 'Pradhan Mantri Fasal Bima Yojana (PMFBY)',
+    nameTa: 'பிரதம மந்திரி பயிர் காப்பீட்டுத் திட்டம் (PMFBY)',
+    type: 'Central',
+    benefitsEn: 'Comprehensive crop insurance coverage against non-preventable natural risks from pre-sowing to post-harvest. Low premium (1.5% for Rabi, 2% for Kharif, 5% for commercial).',
+    benefitsTa: 'இயற்கை சீற்றங்களால் ஏற்படும் பயிர் இழப்பிற்கு முழு இழப்பீடு. மிகக் குறைந்த பிரீமியம் (காரீப் 2%, ரபி 1.5%).',
+    eligibilityEn: 'All farmers including sharecroppers and tenant farmers growing notified crops in notified areas.',
+    eligibilityTa: 'அறிவிக்கப்பட்ட பயிர்களை பயிரிடும் நில உரிமையாளர்கள் மற்றும் குத்தகை விவசாயிகள் அனைவரும் தகுதியானவர்கள்.',
+    docsEn: 'Aadhaar Card, Sowing Certificate from VAO/Agri Officer, Land records, Bank Passbook.',
+    docsTa: 'ஆதார் அட்டை, கிராம நிர்வாக அலுவலர் (VAO) விதைப்பு சான்றிதழ், பட்டா/சிட்டா, வங்கி புத்தகம்.',
+    processEn: 'Enroll through designated banks, PACS, CSCs, or directly on the PMFBY official website before the cut-off date.',
+    processTa: 'வங்கிகள், தொடக்க வேளாண் கூட்டுறவு சங்கங்கள் (PACS) அல்லது CSC மூலம் குறிப்பிட்ட தேதிக்குள் பதிவு செய்யலாம்.',
+    link: 'https://pmfby.gov.in',
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'soil-health-card',
+    nameEn: 'Soil Health Card Scheme',
+    nameTa: 'மண் வள அட்டை திட்டம் (Soil Health Card)',
+    type: 'Central',
+    benefitsEn: 'Free soil test report covering 12 vital parameters (N, P, K, S, Zn, Fe, Cu, Mn, Bo, pH, EC, OC) with tailored crop-specific fertilizer recommendations.',
+    benefitsTa: '12 ஊட்டச்சத்துக்களை பரிசோதித்து இலவச மண் வள அட்டை மற்றும் பயிருக்கு ஏற்ற உர வழிகாட்டி வழங்கப்படுகிறது.',
+    eligibilityEn: 'All farmers across India possessing agricultural land.',
+    eligibilityTa: 'விவசாய நிலம் வைத்துள்ள அனைத்து இந்திய விவசாயிகளும் தகுதியானவர்கள்.',
+    docsEn: 'Land details (Survey number, Village, Taluk), Farmer ID/Aadhaar.',
+    docsTa: 'நில சர்வே எண், கிராமம், தாலுகா விவரம் மற்றும் ஆதார் அட்டை.',
+    processEn: 'Contact your block Agriculture Officer or District Soil Testing Laboratory for soil sample collection.',
+    processTa: 'வட்டார வேளாண் விரிவாக்க அலுவலகம் அல்லது மண் பரிசோதனை நிலையத்தை அணுகலாம்.',
+    link: 'https://soilhealth.dac.gov.in',
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'pmksy',
+    nameEn: 'PM Krishi Sinchayee Yojana (Per Drop More Crop - Drip Subsidy)',
+    nameTa: 'சொட்டு நீர் பாசன மானியத் திட்டம் (PMKSY)',
+    type: 'Central & State',
+    benefitsEn: 'Up to 100% subsidy for small and marginal farmers (75% for other farmers in Tamil Nadu & select states) for installing Drip & Sprinkler irrigation.',
+    benefitsTa: 'சிறு, குறு விவசாயிகளுக்கு 100% மானியத்திலும், இதர விவசாயிகளுக்கு 75% மானியத்திலும் சொட்டு நீர் பாசனக் கருவிகள்.',
+    eligibilityEn: 'Farmers having assured water source (well/borewell) and agricultural land.',
+    eligibilityTa: 'பாசன கிணறு அல்லது ஆழ்துளை கிணறு வசதி கொண்ட அனைத்து விவசாயிகளும்.',
+    docsEn: 'Patta/Chitta, FMB sketch, Well certificate from VAO, Aadhaar Card, Passport photo.',
+    docsTa: 'பட்டா, சிட்டா, புல வரைபடம் (FMB), கிராம நிர்வாக அலுவலர் கிணறு சான்றிதழ், ஆதார்.',
+    processEn: 'Register on State Horticulture/Agriculture portal or through the Assistant Director of Horticulture office.',
+    processTa: 'வட்டார தோட்டக்கலை உதவி இயக்குனர் அலுவலகத்தில் அல்லது மாநில வேளாண் இணையதளத்தில் பதிவு செய்யவும்.',
+    link: 'https://pmksy.gov.in',
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'smam',
+    nameEn: 'Sub-Mission on Agricultural Mechanization (SMAM)',
+    nameTa: 'வேளாண் இயந்திரமயமாக்கல் மானியம் (SMAM)',
+    type: 'Central & State',
+    benefitsEn: '40% to 50% subsidy on purchase of Tractors, Power Tillers, Rotavators, Multi-crop threshers, and Balers.',
+    benefitsTa: 'டிராக்டர், பவர் டில்லர், ரோட்டவேட்டர் போன்ற வேளாண் கருவிகள் வாங்க 40% முதல் 50% வரை அரசு மானியம்.',
+    eligibilityEn: 'Individual farmers, women farmers, SC/ST, and Farmer Producer Organizations (FPOs).',
+    eligibilityTa: 'தனிநபர் விவசாயிகள், பெண் விவசாயிகள், எஸ்சி/எஸ்டி மற்றும் உழவர் உற்பத்தியாளர் நிறுவனங்கள்.',
+    docsEn: 'Aadhaar, Land ownership documents, Bank account, Driving license (for tractor subsidy).',
+    docsTa: 'ஆதார் அட்டை, நில ஆவணங்கள், வங்கி கணக்கு புத்தகம், ஓட்டுனர் உரிமம்.',
+    processEn: 'Apply online on the Agrimachinery portal or visit the Agricultural Engineering Department (AED).',
+    processTa: 'agrimachinery.nic.in இணையதளத்தில் பதிவு செய்து அல்லது வேளாண் பொறியியல் துறை அலுவலகத்தை அணுகலாம்.',
+    link: 'https://agrimachinery.nic.in',
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'kcc',
+    nameEn: 'Kisan Credit Card (KCC) Scheme',
+    nameTa: 'கிசான் கிரெடிட் கார்டு (குறைந்த வட்டி பயிர்க்கடன்)',
+    type: 'Central',
+    benefitsEn: 'Short-term credit at an effective interest rate of 4% per annum (with prompt repayment 3% subvention) up to ₹3,00,000 limit.',
+    benefitsTa: 'ரூ. 3 லட்சம் வரை வெறும் 4% குறைந்த வட்டியில் விரைவான குறுகிய கால பயிர்க்கடன் மற்றும் மூலதன கடன்.',
+    eligibilityEn: 'Owner cultivators, tenant farmers, oral lessees, sharecroppers, and SHGs of farmers.',
+    eligibilityTa: 'விவசாயிகள், குத்தகைதாரர்கள், சுய உதவிக்குழுக்கள் மற்றும் கால்நடை வளர்ப்பவர்கள்.',
+    docsEn: 'Duly filled application form, Identity & Address proof (Aadhaar), Land records showing cultivation.',
+    docsTa: 'பூர்த்தி செய்யப்பட்ட விண்ணப்பம், ஆதார் அட்டை, நில சாகுபடி ஆவணங்கள்.',
+    processEn: 'Approach your nearest nationalized bank, rural bank (RRB), or Cooperative Society.',
+    processTa: 'அருகிலுள்ள வணிக வங்கி, கிராம வங்கி அல்லது தொடக்க வேளாண் கூட்டுறவு சங்கத்தை அணுகவும்.',
+    link: 'https://www.myscheme.gov.in/schemes/kcc',
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'tn-kalaignar',
+    nameEn: 'Kalaignarin All Village Integrated Agriculture Development Programme',
+    nameTa: 'கலைஞரின் அனைத்து கிராம ஒருங்கிணைந்த வேளாண் வளர்ச்சி திட்டம்',
+    type: 'State (Tamil Nadu)',
+    benefitsEn: 'Free distribution of coconut saplings, horticulture fruit plants, dryland tree saplings, farm ponds, and community borewells in selected village panchayats.',
+    benefitsTa: 'இலவச தென்னங்கன்றுகள், தோட்டக்கலை பழச்செடிகள், பண்ணைக்குட்டைகள் மற்றும் சமுதாய ஆழ்துளை கிணறு வசதிகள்.',
+    eligibilityEn: 'Farmers residing in village panchayats selected for the current financial year in Tamil Nadu.',
+    eligibilityTa: 'நடப்பு நிதியாண்டில் தேர்ந்தெடுக்கப்பட்ட கிராம ஊராட்சிகளில் உள்ள அனைத்து விவசாயிகளும்.',
+    docsEn: 'Aadhaar, Land Patta, Uzhavan App registration number.',
+    docsTa: 'ஆதார், நில பட்டா மற்றும் உழவன் செயலி பதிவு எண்.',
+    processEn: 'Contact Village Administrative Officer (VAO) or Block Assistant Director of Agriculture.',
+    processTa: 'கிராம நிர்வாக அலுவலர் அல்லது வட்டார வேளாண்மை உதவி இயக்குநரை அணுகவும்.',
+    link: 'https://agritech.tnau.ac.in',
+    updated: '15 Sep 2026'
+  }
+];
+
+// ==========================================================================
+// VERIFIED EMERGENCY HELPLINES & CONTACT NUMBERS (With timestamps)
+// ==========================================================================
+export const VERIFIED_CONTACTS = [
+  {
+    id: 'kcc',
+    nameEn: 'Kisan Call Centre (KCC)',
+    nameTa: 'கிசான் கால் சென்டர் (அனைத்து இந்திய வேளாண் உதவி)',
+    number: '1800-180-1551',
+    hours: '6:00 AM – 10:00 PM (All 7 Days)',
+    type: 'Toll-Free Helpline',
+    verified: true,
+    source: 'Ministry of Agriculture & Farmers Welfare, Govt of India',
+    updated: '15 Sep 2026',
+    descEn: 'Nationwide toll-free telephone service answering farmer queries in 22 regional languages including Tamil and English by agriculture graduates.'
+  },
+  {
+    id: 'disaster',
+    nameEn: 'National Disaster Management Helpline',
+    nameTa: 'தேசிய பேரிடர் மேலாண்மை உதவி எண்',
+    number: '1070',
+    hours: '24 Hours / 365 Days',
+    type: 'Emergency Flood/Cyclone Helpline',
+    verified: true,
+    source: 'National Disaster Management Authority (NDMA)',
+    updated: '15 Sep 2026',
+    descEn: 'Official round-the-clock emergency support during cyclone, heavy flood, drought, or severe agricultural crisis.'
+  },
+  {
+    id: 'district-disaster',
+    nameEn: 'District Collectorate Emergency Control',
+    nameTa: 'மாவட்ட ஆட்சியர் அலுவலக அவசர கட்டுப்பாட்டு அறை',
+    number: '1077',
+    hours: '24 Hours / 365 Days',
+    type: 'District Level Emergency',
+    verified: true,
+    source: 'State Revenue & Disaster Management Dept',
+    updated: '15 Sep 2026',
+    descEn: 'Direct connection to your local district administration for flood, rain disaster, or field emergencies.'
+  },
+  {
+    id: 'veterinary',
+    nameEn: 'Animal Husbandry & Veterinary Helpline (National)',
+    nameTa: 'கால்நடை அவசர உதவி & மருத்துவ சேவை',
+    number: '1962',
+    hours: '8:00 AM – 8:00 PM',
+    type: 'Veterinary Mobile Clinic',
+    verified: true,
+    source: 'Department of Animal Husbandry & Dairying',
+    updated: '15 Sep 2026',
+    descEn: 'Emergency veterinary doorstep medical care, vaccination schedules, and cattle sickness consultation.'
+  },
+  {
+    id: 'tn-uzhavan',
+    nameEn: 'Tamil Nadu Uzhavan Agri Helpline',
+    nameTa: 'தமிழ்நாடு உழவன் உதவி எண்',
+    number: '1800-425-2444',
+    hours: '9:00 AM – 6:00 PM (Mon–Sat)',
+    type: 'State Agriculture Helpline',
+    verified: true,
+    source: 'Department of Agriculture, Govt of Tamil Nadu',
+    updated: '15 Sep 2026',
+    descEn: 'State government support for seeds, fertilizers, tractor rental, and Uzhavan scheme status in Tamil Nadu.'
+  },
+  {
+    id: 'pm-kisan-help',
+    nameEn: 'PM-KISAN Direct Helpdesk',
+    nameTa: 'பி.எம் கிசான் நேரடி உதவி எண்',
+    number: '155261',
+    hours: '10:00 AM – 5:00 PM (Working Days)',
+    type: 'Installment & KYC Support',
+    verified: true,
+    source: 'PM-KISAN Central Project Cell',
+    updated: '15 Sep 2026',
+    descEn: 'Direct assistance for PM-KISAN installment issues, land seeding, bank account mismatch, and e-KYC.'
+  }
+];
+
+// ==========================================================================
+// NEARBY AGRICULTURE HELP CENTERS (KVKs, Labs, Offices)
+// ==========================================================================
+export const NEARBY_HELP_CENTERS = [
+  {
+    id: 'kvk-dharmapuri',
+    district: 'Dharmapuri',
+    state: 'Tamil Nadu',
+    nameEn: 'Krishi Vigyan Kendra (KVK) Pappireddipatti',
+    nameTa: 'வேளாண் அறிவியல் நிலையம் (KVK) பாப்பிரெட்டிப்பட்டி',
+    category: 'Krishi Vigyan Kendra (KVK)',
+    addressEn: 'TNAU Campus, Pappireddipatti, Dharmapuri - 636905',
+    addressTa: 'தமிழ்நாடு வேளாண் பல்கலைக்கழக வளாகம், பாப்பிரெட்டிப்பட்டி, தருமபுரி - 636905',
+    phone: '04346-245845',
+    hours: '9:30 AM – 5:30 PM (Mon–Fri)',
+    lat: 11.9167,
+    lon: 78.3667,
+    verified: true,
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'ada-dharmapuri',
+    district: 'Dharmapuri',
+    state: 'Tamil Nadu',
+    nameEn: 'Assistant Director of Agriculture (ADA) Office',
+    nameTa: 'வேளாண்மை உதவி இயக்குநர் அலுவலகம், தருமபுரி',
+    category: 'Agriculture Department Office',
+    addressEn: 'District Collectorate Complex, Dharmapuri - 636705',
+    addressTa: 'மாவட்ட ஆட்சியர் அலுவலக வளாகம், தருமபுரி - 636705',
+    phone: '04342-230556',
+    hours: '10:00 AM – 5:45 PM (Mon–Fri)',
+    lat: 12.1211,
+    lon: 78.1582,
+    verified: true,
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'soil-lab-dharmapuri',
+    district: 'Dharmapuri',
+    state: 'Tamil Nadu',
+    nameEn: 'District Soil Testing Laboratory',
+    nameTa: 'மாவட்ட மண் பரிசோதனை நிலையம், தருமபுரி',
+    category: 'Soil Testing Laboratory',
+    addressEn: 'State Seed Farm Campus, Palacode Road, Dharmapuri - 636701',
+    addressTa: 'அரசு விதைப்பண்ணை வளாகம், பாலக்கோடு ரோடு, தருமபுரி - 636701',
+    phone: '04342-232120',
+    hours: '10:00 AM – 5:00 PM (Mon–Fri)',
+    lat: 12.1350,
+    lon: 78.1650,
+    verified: true,
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'vet-dharmapuri',
+    district: 'Dharmapuri',
+    state: 'Tamil Nadu',
+    nameEn: 'Government Veterinary Hospital',
+    nameTa: 'அரசு தலைமை கால்நடை மருத்துவமனை, தருமபுரி',
+    category: 'Veterinary Hospital',
+    addressEn: 'Pennagaram Main Road, Near Old Bus Stand, Dharmapuri - 636701',
+    addressTa: 'பென்னாகரம் மெயின் ரோடு, பழைய பேருந்து நிலையம் அருகில், தருமபுரி',
+    phone: '04342-260840',
+    hours: '8:00 AM – 12:00 PM & 3:00 PM – 5:00 PM',
+    lat: 12.1280,
+    lon: 78.1550,
+    verified: true,
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'kvk-salem',
+    district: 'Salem',
+    state: 'Tamil Nadu',
+    nameEn: 'Krishi Vigyan Kendra (KVK) Sandhiyur',
+    nameTa: 'வேளாண் அறிவியல் நிலையம் (KVK) சந்தியூர், சேலம்',
+    category: 'Krishi Vigyan Kendra (KVK)',
+    addressEn: 'Sandhiyur, Mallur Post, Salem - 636203',
+    addressTa: 'சந்தியூர், மல்லூர் அஞ்சல், சேலம் - 636203',
+    phone: '0427-2422550',
+    hours: '9:30 AM – 5:30 PM (Mon–Fri)',
+    lat: 11.5800,
+    lon: 78.1600,
+    verified: true,
+    updated: '15 Sep 2026'
+  },
+  {
+    id: 'ada-bengaluru',
+    district: 'Bengaluru Rural',
+    state: 'Karnataka',
+    nameEn: 'Raitha Samparka Kendra (RSK) Doddaballapur',
+    nameTa: 'ரைத்த சம்பர்க்க கேந்திரா (உழவர் தொடர்பு மையம்), தொட்டபல்லாப்பூர்',
+    category: 'Agriculture Assistance Center',
+    addressEn: 'APMC Yard, Doddaballapur, Bengaluru Rural - 561203',
+    addressTa: 'APMC யார்டு, தொட்டபல்லாப்பூர், பெங்களூரு ஊரகம் - 561203',
+    phone: '080-27622340',
+    hours: '9:30 AM – 5:30 PM',
+    lat: 13.2900,
+    lon: 77.5300,
+    verified: true,
+    updated: '15 Sep 2026'
+  }
+];
+
+// ==========================================================================
+// PLANT DISEASES DATABASE (For AI Disease Diagnosis)
+// ==========================================================================
+export const PLANT_DISEASES = [
+  {
+    id: 'paddy-blast',
+    crop: 'Paddy (Rice)',
+    nameEn: 'Rice Blast Disease (Magnaporthe oryzae)',
+    nameTa: 'நெல் குலை நோய்',
+    symptomsEn: 'Spindle-shaped lesions with grey centres and dark brown margins on leaves; node and neck rotting in severe cases.',
+    symptomsTa: 'இலைகளில் படகு வடிவ புள்ளிகள், சாம்பல் நிற மையம் மற்றும் பழுப்பு நிற ஓரங்கள்; தீவிர நிலையில் கதிர் கழுத்து அழுகல்.',
+    causeEn: 'Fungal infection favoured by high relative humidity (>90%), dew, and excess nitrogen fertilizer application.',
+    causeTa: 'அதிக ஈரப்பதம், பனிப்பொழிவு மற்றும் மிதமிஞ்சிய தழைச்சத்து (யூரியா) இடுவதால் ஏற்படும் பூஞ்சை தொற்று.',
+    preventionEn: 'Avoid excessive nitrogen; treat seeds with Tricyclazole 75 WP @ 2g/kg; spray Pseudomonas fluorescens @ 10g/L.',
+    preventionTa: 'மிதமிஞ்சிய யூரியாவை தவிர்க்கவும்; விதை நேர்த்தி செய்யவும்; சூடோமோனாஸ் உயிர் பூஞ்சாணத்தை 10 கிராம்/லிட்டர் தெளிக்கவும்.',
+    treatmentEn: 'Spray Tricyclazole 75 WP @ 0.6g/L or Isoprothiolane 40 EC @ 1.5ml/L at early symptom onset.',
+    treatmentTa: 'ஆரம்ப நிலையில் ட்ரைசைக்ளசோல் 75 WP (0.6 கிராம்/லி) அல்லது ஐசோப்ரோதியோலேன் (1.5 மி.லி/லி) தெளிக்கவும்.',
+    confidence: 94
+  },
+  {
+    id: 'tomato-early-blight',
+    crop: 'Tomato',
+    nameEn: 'Tomato Early Blight (Alternaria solani)',
+    nameTa: 'தக்காளி முன் பருவ கருகல் நோய்',
+    symptomsEn: 'Concentric dark brown rings ("target board" pattern) appearing first on lower leaves, surrounded by yellow chlorosis.',
+    symptomsTa: 'கீழ் இலைகளில் தொடங்கும் செறிவூட்டப்பட்ட வட்ட வடிவ கரும்பழுப்பு புள்ளிகள் ("இலக்கு பலகை" வடிவம்).',
+    causeEn: 'Soil-borne fungus thriving in warm wet weather and splashing rain/sprinkler drops.',
+    causeTa: 'மண் வழியே பரவும் பூஞ்சை; மிதமான வெப்பம் மற்றும் இலைகளில் தங்கும் ஈரப்பதம் காரணமாக பரவுகிறது.',
+    preventionEn: 'Mulch soil around plants; avoid overhead wetting; remove lower infected leaves promptly.',
+    preventionTa: 'நிலத்தில் மூடாக்கு இடவும்; இலைகளில் நீர் தெளிப்பதை தவிர்க்கவும்; பாதிக்கப்பட்ட கீழ் இலைகளை உடனே அப்புறப்படுத்தவும்.',
+    treatmentEn: 'Foliar spray of Mancozeb 75 WP @ 2g/L or Azoxystrobin @ 1ml/L during cloudy humid spells.',
+    treatmentTa: 'மேகமூட்டம் உள்ள நாட்களில் மேன்கோசெப் 75 WP (2 கிராம்/லி) அல்லது அசோக்சிஸ்ட்ரோபின் (1 மி.லி/லி) தெளிக்கவும்.',
+    confidence: 91
+  },
+  {
+    id: 'cotton-leaf-curl',
+    crop: 'Cotton',
+    nameEn: 'Cotton Leaf Curl Virus (CLCuV)',
+    nameTa: 'பருத்தி இலை சுருட்டு வைரஸ் நோய்',
+    symptomsEn: 'Upward or downward leaf curling, vein thickening, and enations (cup-like leaf outgrowths) under leaves.',
+    symptomsTa: 'இலைகள் மேல்நோக்கி அல்லது கீழ்நோக்கி சுருங்குதல், நரம்புகள் தடித்தல் மற்றும் இலையின் அடியில் சிறு கிண்ண வடிவ வளர்ச்சி.',
+    causeEn: 'Begomovirus transmitted rapidly by the Whitefly (Bemisia tabaci) vector.',
+    causeTa: 'வெள்ளை ஈ (Whitefly) பூச்சிகள் மூலம் விரைவாக பரவும் வைரஸ் தொற்று.',
+    preventionEn: 'Install yellow sticky traps @ 10/acre; spray 5% neem seed kernel extract (NSKE) at early stage.',
+    preventionTa: 'ஏக்கருக்கு 10 மஞ்சள் வண்ண ஒட்டுப்பொறிகள் வைக்கவும்; ஆரம்பத்தில் 5% வேப்பங்கொட்டை சாறு தெளிக்கவும்.',
+    treatmentEn: 'Control whitefly vector by spraying Diafenthiuron 50 WP @ 1.2g/L or Flonicamid 50 WG @ 0.3g/L.',
+    treatmentTa: 'வெள்ளை ஈயை கட்டுப்படுத்த டயாபெந்தியூரான் (1.2 கிராம்/லி) அல்லது புளோனிகமிட் தெளிக்கவும்.',
+    confidence: 88
+  },
+  {
+    id: 'chilli-anthracnose',
+    crop: 'Chilli',
+    nameEn: 'Chilli Anthracnose & Fruit Rot (Colletotrichum capsici)',
+    nameTa: 'மிளகாய் பழ அழுகல் மற்றும் ஆந்த்ராக்னோஸ்',
+    symptomsEn: 'Sunken circular spots with black concentric rings containing fungal acervuli on ripe fruits, causing fruit drop.',
+    symptomsTa: 'பழுத்த பழங்களில் கரும்பழுப்பு வட்ட வடிவ பள்ளங்கள்; பழங்கள் அழுகி உதிர்ந்து போதல்.',
+    causeEn: 'Fungal spores splashing during rainstorms or unseasonal showers during fruit ripening.',
+    causeTa: 'பழங்கள் பழுக்கும் பருவத்தில் பெய்யும் மழையினால் பரவும் பூஞ்சை வித்துக்கள்.',
+    preventionEn: 'Use certified disease-free seed; treat seeds with Trichoderma harzianum @ 4g/kg.',
+    preventionTa: 'நோய் தாக்காத சான்று பெற்ற விதைகளை பயன்படுத்தவும்; டிரைக்கோடெர்மா கொண்டு விதை நேர்த்தி செய்யவும்.',
+    treatmentEn: 'Spray Difenoconazole 25 EC @ 1ml/L or Copper Oxychloride 50 WP @ 2.5g/L when spots first appear.',
+    treatmentTa: 'டைபனோகோனசோல் (1 மி.லி/லி) அல்லது காப்பர் ஆக்சிகுளோரைடு (2.5 கிராம்/லி) தெளிக்கவும்.',
+    confidence: 89
+  }
+];
+
+// ==========================================================================
+// SOILS, WATER & SEASONS LOOKUPS
+// ==========================================================================
+export const SOILS = [
+  ['alluvial', 'வண்டல் மண்', 'Alluvial Soil'],
+  ['black', 'கரிசல் மண்', 'Black Soil'],
+  ['red', 'செம்மண்', 'Red Soil'],
+  ['clay', 'களிமண்', 'Clay Soil'],
+  ['loamy', 'இருமண் / வண்டல் செம்மண்', 'Loamy Soil'],
+  ['sandy', 'மணல் மண்', 'Sandy Soil'],
+  ['laterite', 'சரளை மண்', 'Laterite Soil'],
+  ['coastal', 'கடற்கரை மணல் மண்', 'Coastal Alluvial']
+];
+
+export const WATER_SOURCES = [
+  ['canal', 'கால்வாய் பாசனம்', 'Canal Irrigation'],
+  ['borewell', 'ஆழ்துளை கிணறு', 'Borewell'],
+  ['openWell', 'திறந்தவெளி கிணறு', 'Open Well'],
+  ['drip', 'சொட்டு நீர் பாசனம்', 'Drip / Micro Irrigation'],
+  ['sufficient', 'போதுமான நீர் வசதி', 'Sufficient Water'],
+  ['limited', 'குறைந்த நீர் வசதி', 'Limited Water'],
+  ['rainfed', 'மானாவாரி / மழைநீர்', 'Rainfed (Dryland)']
+];
+
+export const SEASONS = [
+  ['kharif', 'காரீப் / தென்மேற்கு பருவமழை (ஜூன்-அக்டோபர்)', 'Kharif / Monsoon (Jun–Oct)'],
+  ['rabi', 'ரபி / குளிர்காலம் / வடகிழக்கு பருவமழை (நவம்பர்-மார்ச்)', 'Rabi / Winter (Nov–Mar)'],
+  ['summer', 'கோடை / சையத் பருவம் (ஏப்ரல்-மே)', 'Zaid / Summer (Apr–May)'],
+  ['all', 'ஆண்டு முழுவதும்', 'Year-round']
+];

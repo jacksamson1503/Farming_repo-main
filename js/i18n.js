@@ -1,4 +1,612 @@
-const EN={app:'AI Farm Assistant',tag:"Let's take care of your farm today.",home:'Home',land:'Farm Setup',crops:'Crops',calendar:'Calendar',disease:'Disease Helper',settings:'Settings',welcome:'Good Morning, Jack!',intro:'Enter your farm details to get crop suggestions, tasks and a simple profit estimate.',state:'State',district:'District',soil:'Soil type',water:'Water availability',budget:'Budget per acre (₹)',area:'Land area (acres)',crop:'Preferred crop (optional)',photo:'Photo (optional)',recommend:'Get Recommendations',location:'Use my location',weather:'Weather',refresh:'Refresh',recommendations:'Recommended crops',duration:'Growing duration',yield:'Expected yield',market:'Indicative market price',reason:'Why this crop?',calendarTitle:'Crop Calendar',diseaseTitle:'Crop Disease Helper',diseaseText:'Upload a clear plant photo for a general visual check. Confirm disease with a qualified agricultural expert before treatment.',scan:'Check Photo',reset:'Reset data',saved:'Saved on this device',settingsText:'Your farm preferences and calculations are stored locally in this browser.',noResults:'No crop matched all filters. Try a different soil/water option or budget.',all:'All',days:'days',acres:'acres',tips:'Farmer tips',tip1:'Check local weather before irrigation or spraying.',tip2:'Use soil-test results before deciding fertilizer quantity.',tip3:'Confirm current local mandi prices before selling.',locationDenied:'Location permission was not available. Choose a district manually.',photoReady:'Photo selected. This demo cannot confirm a disease diagnosis.',language:'Language',dashboard:'My Farm',expense:'Expense & Profit',fertilizer:'Fertilizer Guide',tasks:'Today’s Actions',landSummary:'Farm Summary',estimated:'Estimated',cost:'Estimated cost',revenue:'Estimated revenue',profit:'Estimated profit',expenses:'Your expenses',seeds:'Seeds',fertilizerCost:'Fertilizer',labor:'Labor',irrigation:'Irrigation',pest:'Pest control',machinery:'Machinery',other:'Other',calculate:'Calculate Profit',perAcre:'per acre',total:'Total',nextTask:'Next task',chooseCrop:'Choose crop',fertilizerNote:'Fertilizer rates vary by soil test and crop stage. Use this as a planning guide only.',marketNote:'Prices shown are indicative sample ranges, not live mandi quotes.',diseaseNote:'Do not apply pesticide only from this demo.',saveFarm:'Save Farm',savedFarm:'Farm details saved',install:'Install this app from your browser menu for quick access.',profile:'Farm Profile',offline:'Weather unavailable'};
-const TA={app:'AI வேளாண் உதவியாளர்',tag:'இன்று உங்கள் பண்ணையை கவனிப்போம்.',home:'முகப்பு',land:'நில அமைப்பு',crops:'பயிர்கள்',calendar:'காலண்டர்',disease:'நோய் உதவி',settings:'அமைப்புகள்',welcome:'வணக்கம், Jack!',intro:'நில விவரங்களை உள்ளிட்டு பயிர் பரிந்துரை, பணிகள் மற்றும் எளிய லாப மதிப்பீட்டை பெறுங்கள்.',state:'மாநிலம்',district:'மாவட்டம்',soil:'மண் வகை',water:'நீர் வசதி',budget:'ஒரு ஏக்கர் பட்ஜெட் (₹)',area:'நில அளவு (ஏக்கர்)',crop:'விருப்பமான பயிர் (விருப்பம்)',photo:'புகைப்படம் (விருப்பம்)',recommend:'பரிந்துரை பெறுக',location:'என் இருப்பிடத்தை பயன்படுத்து',weather:'வானிலை',refresh:'புதுப்பி',recommendations:'பரிந்துரைக்கப்படும் பயிர்கள்',duration:'வளரும் காலம்',yield:'எதிர்பார்க்கப்படும் மகசூல்',market:'குறிப்புக்கான சந்தை விலை',reason:'இந்த பயிர் ஏன்?',calendarTitle:'பயிர் காலண்டர்',diseaseTitle:'பயிர் நோய் உதவி',diseaseText:'செடியின் தெளிவான புகைப்படத்தை பதிவேற்றுங்கள். இது பொதுவான காட்சி வழிகாட்டி மட்டுமே; மருந்து பயன்படுத்துவதற்கு முன் வேளாண் நிபுணரை அணுகவும்.',scan:'புகைப்படத்தை சரிபார்',reset:'தரவை மீட்டமை',saved:'இந்த சாதனத்தில் சேமிக்கப்பட்டது',settingsText:'உங்கள் பண்ணை தேர்வுகள் மற்றும் கணக்கீடுகள் இந்த உலாவியில் மட்டும் சேமிக்கப்படும்.',noResults:'எந்த பயிரும் பொருந்தவில்லை. வேறு மண்/நீர் தேர்வு அல்லது அதிக பட்ஜெட்டை முயற்சிக்கவும்.',all:'அனைத்தும்',days:'நாட்கள்',acres:'ஏக்கர்',tips:'விவசாயி குறிப்புகள்',tip1:'நீர்ப்பாசனம் அல்லது தெளிப்பதற்கு முன் உள்ளூர் வானிலையை சரிபார்க்கவும்.',tip2:'உர அளவை தீர்மானிக்கும் முன் மண் பரிசோதனை முடிவுகளை பயன்படுத்தவும்.',tip3:'விற்பனைக்கு முன் தற்போதைய உள்ளூர் மண்டி விலையை உறுதி செய்யவும்.',locationDenied:'இருப்பிட அனுமதி கிடைக்கவில்லை. மாவட்டத்தை கைமுறையாக தேர்வு செய்யலாம்.',photoReady:'புகைப்படம் தேர்ந்தெடுக்கப்பட்டது. இந்த டெமோ நோயை உறுதிப்படுத்த முடியாது.',language:'மொழி',dashboard:'என் பண்ணை',expense:'செலவு & லாபம்',fertilizer:'உர வழிகாட்டி',tasks:'இன்றைய பணிகள்',landSummary:'பண்ணை சுருக்கம்',estimated:'மதிப்பீடு',cost:'மதிப்பிடப்பட்ட செலவு',revenue:'மதிப்பிடப்பட்ட வருவாய்',profit:'மதிப்பிடப்பட்ட லாபம்',expenses:'உங்கள் செலவுகள்',seeds:'விதைகள்',fertilizerCost:'உரம்',labor:'தொழிலாளர்',irrigation:'நீர்ப்பாசனம்',pest:'பூச்சி கட்டுப்பாடு',machinery:'இயந்திரம்',other:'மற்றவை',calculate:'லாபத்தை கணக்கிடு',perAcre:'ஒரு ஏக்கருக்கு',total:'மொத்தம்',nextTask:'அடுத்த பணி',chooseCrop:'பயிரை தேர்வு செய்க',fertilizerNote:'மண் பரிசோதனை மற்றும் பயிர் நிலைக்கு ஏற்ப உர அளவு மாறும். இது திட்டமிடுவதற்கான வழிகாட்டி மட்டுமே.',marketNote:'காட்டப்படும் விலைகள் குறிப்புக்கான மாதிரி வரம்புகள்; நேரடி மண்டி விலை அல்ல.',diseaseNote:'இந்த டெமோவை மட்டும் வைத்து பூச்சிக்கொல்லி பயன்படுத்த வேண்டாம்.',saveFarm:'பண்ணையை சேமி',savedFarm:'பண்ணை விவரங்கள் சேமிக்கப்பட்டன',install:'விரைவான பயன்பாட்டிற்கு உலாவி மெனுவில் இருந்து இந்த செயலியை நிறுவலாம்.',profile:'பண்ணை சுயவிவரம்',offline:'வானிலை கிடைக்கவில்லை'};
-let lang=localStorage.getItem('farm-lang')||'ta';
-export const getLang=()=>lang; export const setLang=v=>{lang=v;localStorage.setItem('farm-lang',v)}; export const t=k=>(lang==='ta'?TA:EN)[k]||EN[k]||k;
+// ==========================================================================
+// SMART FARMING BILINGUAL DICTIONARY (English & தமிழ்)
+// Full localization across all 25 screens, menus, labels, alerts & disclaimers
+// ==========================================================================
+
+const EN = {
+  // App branding
+  appName: 'Smart Farm Assistant',
+  tagline: 'Control Every Field with Ease & Precision',
+  version: 'Production Edition v3.5',
+
+  // Navigation & Menus
+  home: 'Home',
+  weather: 'Weather',
+  crops: 'Crops',
+  calendar: 'Calendar',
+  more: 'More Services',
+  settings: 'Settings',
+  profile: 'Farmer Profile',
+  admin: 'Admin Dashboard',
+  notifications: 'Smart Alerts',
+  search: 'Search Services, Crops & Schemes',
+  emergencyCall: 'Kisan Helpline (1800-180-1551)',
+  allServices: 'All Farm Services',
+  quickAccess: 'Quick Access',
+
+  // Common UI actions & badges
+  getStarted: 'Get Started',
+  save: 'Save Changes',
+  edit: 'Edit Profile',
+  delete: 'Delete',
+  cancel: 'Cancel',
+  confirm: 'Confirm',
+  refresh: 'Refresh Live Data',
+  lastUpdated: 'Last updated',
+  justNow: 'Just now',
+  minutesAgo: 'mins ago',
+  hoursAgo: 'hours ago',
+  viewDetails: 'View Details',
+  compare: 'Compare Crops',
+  callNow: 'Call Now',
+  getDirections: 'Get Directions',
+  verified: 'Verified Official Source',
+  officialLink: 'Open Official Website',
+  filter: 'Filter',
+  all: 'All',
+  searchPlaceholder: 'Type crop, disease, scheme, market or city...',
+  close: 'Close',
+  demoNotice: 'DEMO DATA (API not yet configured)',
+  disclaimerTitle: 'Agricultural Advisory Notice',
+  expertDisclaimer: 'This recommendation is an AI-assisted estimate based on regional agronomy data. For high-risk decisions, pest control, and chemical dosages, always consult your local Agricultural Extension Officer or KVK expert.',
+
+  // Weather Screen & Advisory
+  liveWeather: 'Live Hyperlocal Weather',
+  feelsLike: 'Feels like',
+  humidity: 'Relative Humidity',
+  rainChance: 'Chance of Rain',
+  rainfall: 'Rainfall',
+  wind: 'Wind Speed',
+  windDir: 'Wind Direction',
+  uvIndex: 'UV Index',
+  cloudCover: 'Cloud Cover',
+  surfacePressure: 'Surface Pressure',
+  sunrise: 'Sunrise',
+  sunset: 'Sunset',
+  hourlyForecast: '24-Hour Hourly Forecast',
+  weeklyForecast: '7-Day Extended Weather Outlook',
+  weatherAdvisoryTitle: 'Agricultural Weather Advisory',
+  weatherSourceNotice: 'Data Source: Open-Meteo Hyperlocal Weather API',
+  weatherUnavailable: 'Weather data currently unavailable. Please check internet connection or retry.',
+  severeAlert: 'Severe Weather Warning',
+  noRainExpected: 'Dry and clear. No significant precipitation expected.',
+  moderateRainExpected: 'Moderate rainfall forecast in your area.',
+  heavyRainExpected: 'Heavy rainfall alert! Postpone irrigation and chemical spraying.',
+  highHeatExpected: 'High temperature warning. Ensure timely irrigation in early morning or evening.',
+
+  // Advisory Statements
+  advRainHeavy: 'Heavy rain forecast. Stop irrigation immediately, provide drainage channels, and protect harvested produce.',
+  advRainLight: 'Light rain expected. Delay foliar pesticide and fertilizer applications to prevent wash-off.',
+  advHighTemp: 'Elevated temperatures detected. Monitor soil moisture closely and irrigate during cooler hours.',
+  advHighHumidity: 'High humidity (>80%) creates favorable conditions for fungal blast and blight. Inspect crop canopy regularly.',
+  advStrongWind: 'Strong winds expected (>25 km/h). Provide staking or propping for tall crops like Banana and Sugarcane.',
+  advFavorable: 'Favorable clear weather conditions. Suitable for land tillage, harvesting, drying, and fertilizer top-dressing.',
+
+  // Farmer Profile
+  profileTitle: 'Farmer & Land Profile',
+  name: 'Farmer Full Name',
+  mobile: 'Mobile Phone Number',
+  state: 'State',
+  district: 'District',
+  taluk: 'Taluk / Block',
+  village: 'Village / Panchayat',
+  landSize: 'Total Land Size (Acres)',
+  soilType: 'Dominant Soil Type',
+  irrigationType: 'Primary Irrigation Method',
+  mainCrops: 'Currently Cultivated Crops',
+  preferredLang: 'Preferred Language',
+  profileSavedSuccess: 'Farmer profile saved successfully!',
+  editProfilePrompt: 'Keep your farm details updated for precise hyperlocal advisories.',
+
+  // Location & GPS System
+  locationTitle: 'Farm Location & GPS',
+  currentLocation: 'Current Location',
+  useGps: 'Use Current GPS Location',
+  gpsLocating: 'Accessing device GPS satellites...',
+  gpsSuccess: 'GPS location identified successfully!',
+  gpsDenied: 'GPS permission was unavailable. Please select your State & District manually.',
+  selectState: 'Select State / UT',
+  selectDistrict: 'Select District',
+  selectTaluk: 'Select Taluk / Block',
+  selectVillage: 'Enter Village Name',
+  changeLocation: 'Change Location',
+  locationDetails: 'Selected Location Coordinates',
+
+  // Crop Library & Comparison
+  cropLibraryTitle: 'All-India Crop Library',
+  cropDetailsTitle: 'Crop Agronomy & Cultivation Guide',
+  cropComparisonTitle: 'Side-by-Side Crop Comparison',
+  growingPeriod: 'Growing Duration',
+  days: 'days',
+  acres: 'acres',
+  waterRequirement: 'Water Requirement',
+  cultivationCost: 'Estimated Cost per Acre',
+  expectedYield: 'Expected Yield',
+  marketPrice: 'Reference Market Price',
+  potentialRevenue: 'Potential Gross Revenue',
+  potentialProfit: 'Estimated Net Profit',
+  riskLevel: 'Risk Profile',
+  suitableSoil: 'Suitable Soils',
+  climate: 'Climate & Temperature',
+  sowingSeason: 'Sowing Season',
+  fertilizerGuide: 'Fertilizer Guidance (NPK)',
+  commonPests: 'Common Insect Pests',
+  commonDiseases: 'Common Plant Diseases',
+  harvestingStorage: 'Harvesting & Storage Guidelines',
+  cultivationSteps: 'Step-by-Step Cultivation Schedule',
+  selectCropToCompare: 'Choose crops to compare',
+  comparisonTip: 'Compare cultivation duration, water needs, investment costs, and profit potential before sowing.',
+
+  // AI Crop Recommendation
+  cropRecommendTitle: 'AI-Powered Crop Recommendation',
+  cropRecommendIntro: 'Enter your farm conditions to discover optimal crops with high yield and return on investment.',
+  soilTestInfo: 'Soil Test Information (Optional)',
+  soilPh: 'Soil pH Level',
+  soilNitrogen: 'Nitrogen (N) Level',
+  soilPhosphorus: 'Phosphorus (P) Level',
+  soilPotassium: 'Potassium (K) Level',
+  waterAvailability: 'Available Water Source',
+  season: 'Upcoming Cropping Season',
+  previousCrop: 'Previously Harvested Crop',
+  getAiRecommendation: 'Generate AI Recommendations',
+  recommendedCropsList: 'Top Recommended Crops for Your Farm',
+  whySuitable: 'Why this crop is suitable for your land',
+  basicRequirements: 'Basic Agricultural Requirements',
+  aiDisclaimerNotice: 'Recommendations are calculated using agronomic suitability models based on your location and soil parameters.',
+
+  // Soil Analysis
+  soilAnalysisTitle: 'Soil Health & Fertility Analysis',
+  manualEntry: 'Manual Soil Parameters',
+  uploadReport: 'Upload Soil Test Report (PDF/Image)',
+  uploadSoilPhoto: 'Upload Soil Photo (Texture Estimate)',
+  phLevel: 'pH Reaction',
+  ecLevel: 'Electrical Conductivity (EC)',
+  organicCarbon: 'Organic Carbon (%)',
+  analyzeSoil: 'Analyze Soil Parameters',
+  soilHealthSummary: 'Soil Health Interpretation',
+  soilPhotoDisclaimer: 'Soil photo analysis gives a surface visual estimate only. A laboratory soil test is necessary for exact nutrient recommendations.',
+
+  // Crop Disease Detection
+  diseaseTitle: 'AI Crop Disease Detection',
+  diseaseIntro: 'Snap or upload a photo of an affected leaf, stem, or fruit for rapid diagnosis and treatment guidance.',
+  takePhoto: 'Take Plant Photo / Camera',
+  uploadPhoto: 'Upload Image File',
+  analyzingImage: 'Analyzing symptoms with AI agricultural vision model...',
+  detectedDisease: 'Possible Disease Identified',
+  confidenceScore: 'Diagnostic Confidence',
+  symptoms: 'Observed Symptoms',
+  possibleCauses: 'Primary Cause & Pathogen',
+  prevention: 'Preventative Cultural Measures',
+  treatment: 'Recommended Treatment Guidance',
+  expertWarning: 'Do NOT spray hazardous pesticides without consulting an agricultural officer or KVK scientist.',
+
+  // Farming Calendar
+  calendarTitle: 'Personalized Farming Calendar',
+  calendarIntro: 'Track your field operations from seed treatment to harvest with timely task reminders.',
+  sowingDate: 'Sowing / Transplanting Date',
+  completed: 'Done',
+  pending: 'Pending',
+  markComplete: 'Mark Completed',
+  addReminder: 'Set Reminder',
+  todaysTasks: "Today's Farming Tasks",
+  noTasksToday: 'No urgent field operations scheduled for today.',
+
+  // Irrigation Guidance
+  irrigationTitle: 'Smart Weather-Aware Irrigation',
+  irrigationIntro: 'Conserve water and power by coordinating irrigation with live hyperlocal rainfall forecasts.',
+  irrigationStatus: 'Irrigation Recommendation for Today',
+  doNotIrrigate: 'DO NOT IRRIGATE TODAY: Rain forecast will satisfy soil moisture requirements.',
+  irrigateRecommended: 'IRRIGATION RECOMMENDED: High evaporation rate. Irrigate during early morning or evening hours.',
+  soilMoistureTip: 'Check root zone moisture with a soil probe before running tube wells.',
+
+  // Cost & Profit Calculator
+  calculatorTitle: 'Farm Cost & Profit Calculator',
+  calcIntro: 'Estimate cultivation expenses, harvest revenues, and net profits before investing.',
+  seedCost: 'Seed & Nursery Cost (₹)',
+  fertilizerCost: 'Fertilizer & Manure Cost (₹)',
+  pesticideCost: 'Pesticide & Bio-control Cost (₹)',
+  laborCost: 'Labour & Weeding Expenses (₹)',
+  irrigationExpense: 'Irrigation & Electricity / Fuel (₹)',
+  machineryCost: 'Tractor & Machinery Rental (₹)',
+  transportCost: 'Transportation & Mandi Fees (₹)',
+  otherExpense: 'Miscellaneous Expenses (₹)',
+  expectedYieldQty: 'Expected Yield (Quintals / Tonnes)',
+  expectedSellingPrice: 'Expected Market Price per Unit (₹)',
+  calculateProfit: 'Calculate Profit & Loss',
+  totalInvestment: 'Total Farm Investment',
+  expectedGrossRevenue: 'Expected Gross Revenue',
+  estimatedNetProfit: 'Estimated Net Profit',
+  roiPercentage: 'Return on Investment (ROI)',
+  breakEvenPrice: 'Break-even Price per Unit',
+  saveCalculation: 'Save This Calculation',
+  savedCalculations: 'Saved Farm Financial Plans',
+
+  // Mandi Market Prices
+  marketPricesTitle: 'Live Agricultural Market Prices (Mandi)',
+  marketIntro: 'Track official wholesale mandi arrival rates across Indian APMCs.',
+  selectMarket: 'Select Mandi / Market Yard',
+  minPrice: 'Minimum Price',
+  maxPrice: 'Maximum Price',
+  modalPrice: 'Modal (Average) Price',
+  arrivalDate: 'Arrival Date',
+  priceUnit: 'Price Unit',
+  dataSource: 'Data Source: Agmarknet / e-NAM Directorate of Marketing',
+  priceUnavailable: 'Market price currently unavailable for the selected commodity in this mandi. Please check again later.',
+
+  // Government Schemes
+  schemesTitle: 'Government Agriculture Schemes',
+  schemesIntro: 'Explore subsidies, insurance, credit support, and equipment schemes from Central & State governments.',
+  schemeType: 'Scheme Category',
+  benefits: 'Key Benefits',
+  eligibility: 'Eligibility Criteria',
+  requiredDocs: 'Required Documents',
+  howToApply: 'Application Procedure',
+  applyOnline: 'Visit Scheme Portal',
+
+  // Nearby Help & Contacts
+  helpNearMeTitle: 'Agriculture Help Near Me',
+  helpIntro: 'Find verified government extension offices, KVKs, soil test labs, and veterinary support in your district.',
+  category: 'Service Category',
+  address: 'Address',
+  contactPerson: 'Contact / Phone',
+  workingHours: 'Working Hours',
+  verifiedContactsTitle: 'Verified Government Contacts & Helplines',
+  emergencyHelplines: 'Emergency Farmer Helplines',
+
+  // Ask Agriculture AI Assistant
+  aiAssistantTitle: 'Ask Agriculture AI Assistant',
+  aiAssistantIntro: 'Speak or type your farming questions in English or தமிழ். AI provides tailored guidance based on your farm, weather, and location.',
+  askPlaceholder: 'Ask about crops, fertilizer, irrigation, schemes, diseases...',
+  send: 'Send Question',
+  voiceInput: 'Voice Search / Speech Input',
+  listenVoice: 'Listen (Audio Read-Aloud)',
+  stopVoice: 'Stop Audio',
+  smartChipsTitle: 'Suggested Questions:',
+  chip1: 'Which crop should I grow on red soil this season?',
+  chip2: 'How can I control leaf curl in chilli without heavy chemicals?',
+  chip3: 'Will it rain tomorrow in my district? Should I irrigate?',
+  chip4: 'How do I apply for 100% drip irrigation subsidy?',
+  aiConfidenceNotice: 'AI agricultural guidance is for reference only. Consult local KVK scientists for critical field operations.',
+
+  // Settings & Admin
+  settingsTitle: 'Application Settings',
+  languageSelection: 'Language / மொழி',
+  englishLang: 'English',
+  tamilLang: 'தமிழ் (Tamil)',
+  storageNotice: 'Farm profile and calculation history are securely saved locally on this device.',
+  clearData: 'Clear All App Data & Reset',
+  dataCleared: 'All local farm data has been cleared.',
+  adminTitle: 'Agriculture Administration Portal',
+  registeredFarmers: 'Registered Farmer Profiles',
+  manageAnnouncements: 'Broadcast Farm Announcements',
+  publishAnnouncement: 'Publish Announcement',
+  announcementText: 'Announcement details (e.g. Subsidy distribution notice)',
+  auditTimestamp: 'Audit Timestamp',
+  noFarmersYet: 'No farmer profiles registered on this device yet.',
+
+  // Splash & Login
+  welcomeHeroTitle: 'Control Every Field with Ease',
+  welcomeHeroSub: 'Smart farming brings modern technology into agriculture, helping Indian farmers plan crops, track live weather, diagnose diseases, and maximize profits.',
+  enterMobile: 'Enter Mobile Phone Number',
+  sendOtp: 'Send OTP / Quick Access',
+  demoOtp: 'Login with Mobile',
+  loginSuccess: 'Login successful! Welcome to your digital farm assistant.'
+};
+
+const TA = {
+  // App branding
+  appName: 'உழவன் தோழன் (Smart Farm)',
+  tagline: 'ஒவ்வொரு நிலத்தையும் எளிதாகவும் துல்லியமாகவும் நிர்வகியுங்கள்',
+  version: 'உற்பத்தி பதிப்பு v3.5',
+
+  // Navigation & Menus
+  home: 'முகப்பு',
+  weather: 'வானிலை',
+  crops: 'பயிர்கள்',
+  calendar: 'காலண்டர்',
+  more: 'கூடுதல் சேவைகள்',
+  settings: 'அமைப்புகள்',
+  profile: 'விவசாயி சுயவிவரம்',
+  admin: 'நிர்வாக பலகை',
+  notifications: 'விவசாய அறிவிப்புகள்',
+  search: 'பயிர்கள், திட்டங்கள் & சந்தை தேடல்',
+  emergencyCall: 'கிசான் உதவி எண் (1800-180-1551)',
+  allServices: 'அனைத்து வேளாண் சேவைகள்',
+  quickAccess: 'விரைவு சேவைகள்',
+
+  // Common UI actions & badges
+  getStarted: 'தொடங்குங்கள்',
+  save: 'சேமி',
+  edit: 'சுயவிவரத்தை திருத்து',
+  delete: 'நீக்கு',
+  cancel: 'ரத்து செய்',
+  confirm: 'உறுதி செய்',
+  refresh: 'வானிலையை புதுப்பி',
+  lastUpdated: 'கடைசியாக புதுப்பிக்கப்பட்டது',
+  justNow: 'சற்று முன்',
+  minutesAgo: 'நிமிடங்களுக்கு முன்',
+  hoursAgo: 'மணிநேரங்களுக்கு முன்',
+  viewDetails: 'முழு விவரங்கள்',
+  compare: 'பயிர்களை ஒப்பிடுக',
+  callNow: 'உடனே அழைக்க',
+  getDirections: 'வழித்தடம் (Maps)',
+  verified: 'சரிபார்க்கப்பட்ட அரசு தகவல்',
+  officialLink: 'அரசு இணையதளத்திற்கு செல்ல',
+  filter: 'வடிகட்டு',
+  all: 'அனைத்தும்',
+  searchPlaceholder: 'பயிர், நோய், திட்டம், சந்தை அல்லது ஊர் பெயரை உள்ளிடவும்...',
+  close: 'மூடு',
+  demoNotice: 'மாதிரி தரவு (API இன்னும் இணைக்கப்படவில்லை)',
+  disclaimerTitle: 'வேளாண் ஆலோசனை அறிவிப்பு',
+  expertDisclaimer: 'இந்த பரிந்துரை பிராந்திய வேளாண் தகவல்களை அடிப்படையாகக் கொண்ட AI மதிப்பீடாகும். அதிக ஆபத்துள்ள முடிவுகள், பூச்சிக்கொல்லி மருந்தளவு குறித்து உள்ளூர் வட்டார வேளாண்மை அலுவலர் அல்லது வேளாண் அறிவியல் நிலைய (KVK) நிபுணர்களை அணுகவும்.',
+
+  // Weather Screen & Advisory
+  liveWeather: 'நேரடி உள்ளூர் வானிலை',
+  feelsLike: 'உணரும் வெப்பம்',
+  humidity: 'காற்றின் ஈரப்பதம்',
+  rainChance: 'மழை வாய்ப்பு',
+  rainfall: 'மழை அளவு',
+  wind: 'காற்றின் வேகம்',
+  windDir: 'காற்றின் திசை',
+  uvIndex: 'புற ஊதா கதிர்வீச்சு (UV)',
+  cloudCover: 'மேகமூட்டம்',
+  surfacePressure: 'வளிமண்டல அழுத்தம்',
+  sunrise: 'சூரிய உதயம்',
+  sunset: 'சூரிய அஸ்தமனம்',
+  hourlyForecast: '24 மணிநேர வானிலை கணிப்பு',
+  weeklyForecast: '7 நாள் நீட்டிக்கப்பட்ட வானிலை',
+  weatherAdvisoryTitle: 'விவசாய வானிலை ஆலோசனை',
+  weatherSourceNotice: 'தரவு மூலம்: Open-Meteo நேரடி உள்ளூர் வானிலை API',
+  weatherUnavailable: 'வானிலை தகவல் தற்போது கிடைக்கவில்லை. இணைய இணைப்பை சரிபார்க்கவும்.',
+  severeAlert: 'தீவிர வானிலை எச்சரிக்கை',
+  noRainExpected: 'வானம் தெளிவாகவும் வறண்டதாகவும் இருக்கும். மழை வாய்ப்பு இல்லை.',
+  moderateRainExpected: 'உங்கள் பகுதியில் மிதமான மழை பெய்ய வாய்ப்புள்ளது.',
+  heavyRainExpected: 'கனமழை எச்சரிக்கை! பாசனம் மற்றும் உரம்/மருந்து தெளிப்பதை தள்ளிவைக்கவும்.',
+  highHeatExpected: 'அதிக வெப்ப எச்சரிக்கை. அதிகாலை அல்லது மாலை வேளையில் நீர்ப்பாசனம் செய்யவும்.',
+
+  // Advisory Statements
+  advRainHeavy: 'கனமழை எதிர்பார்க்கப்படுகிறது. நீர்ப்பாசனத்தை உடனே நிறுத்துங்கள்; வடிகால் வசதியை சரிசெய்து அறுவடை செய்த தானியங்களை பாதுகாப்பான இடத்திற்கு மாற்றவும்.',
+  advRainLight: 'லேசான மழை வாய்ப்பு. இலைவழி உரம் மற்றும் பூச்சிக்கொல்லி மருந்து தெளிப்பதை தள்ளிப்போடவும்.',
+  advHighTemp: 'அதிக வெப்ப நிலை. மண் ஈரப்பதத்தை அடிக்கடி சோதிக்கவும்; ஆவியாதலைத் தவிர்க்க காலை அல்லது மாலையில் பாசனம் செய்யவும்.',
+  advHighHumidity: 'காற்றின் ஈரப்பதம் அதிகம் (>80%). குலை நோய் மற்றும் இலைக்கருகல் போன்ற பூஞ்சை நோய்கள் பரவ வாய்ப்புள்ளது. பயிர்களை கண்காணிக்கவும்.',
+  advStrongWind: 'பலத்த காற்று வீசக்கூடும் (>25 கி.மீ/மணி). வாழை, கரும்பு போன்ற உயரமான பயிர்களுக்கு முட்டுக் கொடுத்து தாங்கவும்.',
+  advFavorable: 'தெளிவான சாதகமான வானிலை. நில உழவு, அறுவடை, தானியங்களை உலர்த்துதல் மற்றும் உரம் இடுவதற்கு மிக உகந்த சூழல்.',
+
+  // Farmer Profile
+  profileTitle: 'விவசாயி & நில சுயவிவரம்',
+  name: 'விவசாயி முழுப் பெயர்',
+  mobile: 'கைபேசி எண்',
+  state: 'மாநிலம்',
+  district: 'மாவட்டம்',
+  taluk: 'தாலுகா / வட்டாரம்',
+  village: 'கிராமம் / ஊராட்சி',
+  landSize: 'மொத்த நிலப்பரப்பு (ஏக்கர்)',
+  soilType: 'மண் வகை',
+  irrigationType: 'முதன்மை பாசன முறை',
+  mainCrops: 'தற்போது சாகுபடி செய்யப்படும் பயிர்கள்',
+  preferredLang: 'விருப்பமான மொழி',
+  profileSavedSuccess: 'விவசாயி சுயவிவரம் வெற்றிகரமாக சேமிக்கப்பட்டது!',
+  editProfilePrompt: 'துல்லியமான உள்ளூர் ஆலோசனைகளைப் பெற உங்கள் பண்ணை விவரங்களை புதுப்பித்து வைக்கவும்.',
+
+  // Location & GPS System
+  locationTitle: 'பண்ணை இருப்பிடம் & GPS',
+  currentLocation: 'தற்போதைய இருப்பிடம்',
+  useGps: 'என் தற்போதைய GPS இருப்பிடத்தைப் பயன்படுத்து',
+  gpsLocating: 'சாதனத்தின் GPS மூலம் இருப்பிடத்தை தேடுகிறது...',
+  gpsSuccess: 'GPS இருப்பிடம் வெற்றிகரமாக கண்டறியப்பட்டது!',
+  gpsDenied: 'GPS அனுமதி கிடைக்கவில்லை. தயவுசெய்து மாநிலம் மற்றும் மாவட்டத்தை கைமுறையாக தேர்வு செய்யவும்.',
+  selectState: 'மாநிலத்தை தேர்வு செய்க',
+  selectDistrict: 'மாவட்டத்தை தேர்வு செய்க',
+  selectTaluk: 'தாலுகா / வட்டாரத்தை தேர்வு செய்க',
+  selectVillage: 'கிராமப் பெயரை உள்ளிடவும்',
+  changeLocation: 'இருப்பிடத்தை மாற்று',
+  locationDetails: 'தேர்ந்தெடுக்கப்பட்ட இடத்தின் விவரங்கள்',
+
+  // Crop Library & Comparison
+  cropLibraryTitle: 'இந்திய பயிர்கள் களஞ்சியம்',
+  cropDetailsTitle: 'முழுமையான பயிர் சாகுபடி வழிகாட்டி',
+  cropComparisonTitle: 'பயிர்களின் நேரடி ஒப்பீடு',
+  growingPeriod: 'வளரும் காலம்',
+  days: 'நாட்கள்',
+  acres: 'ஏக்கர்',
+  waterRequirement: 'நீர் தேவை',
+  cultivationCost: 'ஏக்கருக்கான சாகுபடி செலவு',
+  expectedYield: 'எதிர்பார்க்கப்படும் மகசூல்',
+  marketPrice: 'குறிப்பு சந்தை விலை',
+  potentialRevenue: 'மொத்த எதிர்பார்க்கப்படும் வருவாய்',
+  potentialProfit: 'மதிப்பிடப்பட்ட நிகர லாபம்',
+  riskLevel: 'இடர் அளவு (Risk)',
+  suitableSoil: 'பொருத்தமான மண்',
+  climate: 'தட்பவெப்பநிலை',
+  sowingSeason: 'பட்டம் / விதைப்பு காலம்',
+  fertilizerGuide: 'உர மேலாண்மை வழிகாட்டி (NPK)',
+  commonPests: 'தாக்கும் முக்கிய பூச்சிகள்',
+  commonDiseases: 'தாக்கும் நோய்கள்',
+  harvestingStorage: 'அறுவடை & சேமிப்பு முறைகள்',
+  cultivationSteps: 'படிப்படியான சாகுபடி கால அட்டவணை',
+  selectCropToCompare: 'ஒப்பிட வேண்டிய பயிர்களை தேர்வு செய்க',
+  comparisonTip: 'விதைப்பதற்கு முன் சாகுபடி காலம், நீர் தேவை, செலவு மற்றும் லாபத்தை ஒப்பிட்டு திட்டமிடுங்கள்.',
+
+  // AI Crop Recommendation
+  cropRecommendTitle: 'AI பயிர் பரிந்துரை கருவி',
+  cropRecommendIntro: 'உங்கள் நிலத்தின் நிலவரத்தை உள்ளிட்டு, அதிக மகசூலும் லாபமும் தரக்கூடிய பயிர்களை கண்டறியுங்கள்.',
+  soilTestInfo: 'மண் பரிசோதனை விவரங்கள் (விருப்பம்)',
+  soilPh: 'மண்ணின் கார அமில நிலை (pH)',
+  soilNitrogen: 'தழைச்சத்து (N) அளவு',
+  soilPhosphorus: 'மணிச்சத்து (P) அளவு',
+  soilPotassium: 'சாம்பல் சத்து (K) அளவு',
+  waterAvailability: 'கிடைக்கும் நீர் ஆதாரம்',
+  season: 'வரவிருக்கும் சாகுபடி பருவம்',
+  previousCrop: 'முந்தைய சாகுபடி பயிர்',
+  getAiRecommendation: 'AI பரிந்துரைகளைப் பெறுக',
+  recommendedCropsList: 'உங்கள் நிலத்திற்கு பரிந்துரைக்கப்படும் பயிர்கள்',
+  whySuitable: 'இந்த பயிர் உங்கள் நிலத்திற்கு ஏன் ஏற்றது?',
+  basicRequirements: 'அடிப்படை வேளாண் தேவைகள்',
+  aiDisclaimerNotice: 'இந்தப் பரிந்துரைகள் உங்கள் இருப்பிடம் மற்றும் மண் பண்புகளின் அடிப்படையில் கணிக்கப்பட்ட வேளாண் மாதிரி மட்டுமே.',
+
+  // Soil Analysis
+  soilAnalysisTitle: 'மண் வளம் & பரிசோதனை ஆய்வு',
+  manualEntry: 'மண் அளவுகளை கைமுறையாக உள்ளிட',
+  uploadReport: 'மண் பரிசோதனை அறிக்கையை பதிவேற்ற (PDF/படம்)',
+  uploadSoilPhoto: 'மண்ணின் புகைப்படத்தை பதிவேற்ற (தோராய கணிப்பு)',
+  phLevel: 'கார அமிலத்தன்மை (pH)',
+  ecLevel: 'மின் கடத்துத்திறன் (EC)',
+  organicCarbon: 'கரிமக் கரிமச் சத்து (%)',
+  analyzeSoil: 'மண் அளவுகளை பகுப்பாய்வு செய்க',
+  soilHealthSummary: 'மண் வள நிலை மற்றும் உர வழிகாட்டுதல்',
+  soilPhotoDisclaimer: 'புகைப்பட பகுப்பாய்வு மேலோட்டமான காட்சி மதிப்பீடு மட்டுமே. துல்லியமான உர மேலாண்மைக்கு ஆய்வக மண் பரிசோதனையே அவசியமாகும்.',
+
+  // Crop Disease Detection
+  diseaseTitle: 'AI பயிர் நோய் கண்டறிதல்',
+  diseaseIntro: 'பாதிக்கப்பட்ட இலை, தண்டு அல்லது பழத்தை படம் பிடித்து பதிவேற்றினால், நோய் மற்றும் சிகிச்சை விவரங்களை அறியலாம்.',
+  takePhoto: 'கேமரா மூலம் படம் எடுக்க',
+  uploadPhoto: 'புகைப்பட கோப்பை பதிவேற்ற',
+  analyzingImage: 'AI வேளாண் பார்வை மாதிரி மூலம் நோயை பகுப்பாய்வு செய்கிறது...',
+  detectedDisease: 'கண்டறியப்பட்ட சாத்தியமான நோய்',
+  confidenceScore: 'துல்லிய அளவு',
+  symptoms: 'வெளிப்படையான நோய் அறிகுறிகள்',
+  possibleCauses: 'நோயின் காரணம் & பரவும் முறை',
+  prevention: 'தடுப்பு மற்றும் இயற்கை பராமரிப்பு முறைகள்',
+  treatment: 'பரிந்துரைக்கப்படும் சிகிச்சை முறைகள்',
+  expertWarning: 'வேளாண் அலுவலர் அல்லது KVK விஞ்ஞானியை ஆலோசிக்காமல் வீரியமிக்க பூச்சிக்கொல்லிகளை தெளிக்க வேண்டாம்.',
+
+  // Farming Calendar
+  calendarTitle: 'தனிப்பயனாக்கப்பட்ட பயிர் காலண்டர்',
+  calendarIntro: 'விதைப்பு முதல் அறுவடை வரை உங்கள் பண்ணை வேலைகளை தேதி வாரியாக நினைவூட்டல்களுடன் நிர்வகியுங்கள்.',
+  sowingDate: 'விதைப்பு / நடுவு செய்த தேதி',
+  completed: 'முடிந்தது',
+  pending: 'நிலுவையில்',
+  markComplete: 'முடித்ததாக குறி',
+  addReminder: 'நினைவூட்டல் அமை',
+  todaysTasks: 'இன்றைய விவசாய பணிகள்',
+  noTasksToday: 'இன்று அவசர பணிகள் எதுவும் திட்டமிடப்படவில்லை.',
+
+  // Irrigation Guidance
+  irrigationTitle: 'வானிலை சார்ந்த நுண்ணிய நீர்ப்பாசனம்',
+  irrigationIntro: 'உள்ளூர் மழை கணிப்புக்கு ஏற்ப நீர்ப்பாசனத்தை திட்டமிட்டு தண்ணீரை மிச்சப்படுத்துங்கள்.',
+  irrigationStatus: 'இன்றைய நீர்ப்பாசன ஆலோசனை',
+  doNotIrrigate: 'இன்று பாசனம் செய்ய வேண்டாம்: மழை பெய்யும் வாய்ப்பு உள்ளதால் நில ஈரப்பதம் பூர்த்தியாகும்.',
+  irrigateRecommended: 'பாசனம் செய்ய பரிந்துரைக்கப்படுகிறது: அதிக ஆவியாதல் உள்ளதால் காலை அல்லது மாலையில் பாசனம் செய்யவும்.',
+  soilMoistureTip: 'மோட்டாரை இயக்குவதற்கு முன் வேர் மண்டல ஈரப்பதத்தை கை விரலால் சோதித்து பார்க்கவும்.',
+
+  // Cost & Profit Calculator
+  calculatorTitle: 'விவசாய செலவு & லாபக் கணக்கீடு',
+  calcIntro: 'சாகுபடிக்கு முன் விதை, உரம், ஆட்கள் கூலி மற்றும் எதிர்பார்க்கப்படும் லாபத்தை கணக்கிடுங்கள்.',
+  seedCost: 'விதை & நாற்று செலவு (₹)',
+  fertilizerCost: 'உரம் & தொழுஉர செலவு (₹)',
+  pesticideCost: 'பூச்சி & நோய் மருந்து செலவு (₹)',
+  laborCost: 'ஆட்கள் கூலி & களை எடுத்தல் (₹)',
+  irrigationExpense: 'பாசனம் & மின்சாரம் / டீசல் செலவு (₹)',
+  machineryCost: 'டிராக்டர் & இயந்திர வாடகை (₹)',
+  transportCost: 'போக்குவரத்து & மண்டி கட்டணம் (₹)',
+  otherExpense: 'இதர செலவுகள் (₹)',
+  expectedYieldQty: 'எதிர்பார்க்கப்படும் மகசூல் (குவிண்டால் / டன்)',
+  expectedSellingPrice: 'எதிர்பார்க்கப்படும் விற்பனை விலை (₹)',
+  calculateProfit: 'லாப நஷ்டத்தை கணக்கிடு',
+  totalInvestment: 'மொத்த சாகுபடி செலவு',
+  expectedGrossRevenue: 'எதிர்பார்க்கப்படும் மொத்த வருவாய்',
+  estimatedNetProfit: 'மதிப்பிடப்பட்ட நிகர லாபம்',
+  roiPercentage: 'முதலீட்டின் மீதான லாப விகிதம் (ROI)',
+  breakEvenPrice: 'நஷ்டமில்லா விற்பனை விலை',
+  saveCalculation: 'இந்த கணக்கீட்டை சேமி',
+  savedCalculations: 'சேமிக்கப்பட்ட விவசாய நிதி திட்டங்கள்',
+
+  // Mandi Market Prices
+  marketPricesTitle: 'நேரடி ஒழுங்குமுறை விற்பனைக்கூட விலை (மண்டி)',
+  marketIntro: 'இந்தியாவின் முக்கிய வேளாண் சந்தைகளின் தினசரி வரத்து விலையை அறியுங்கள்.',
+  selectMarket: 'சந்தை / மண்டியை தேர்வு செய்க',
+  minPrice: 'குறைந்தபட்ச விலை',
+  maxPrice: 'அதிகபட்ச விலை',
+  modalPrice: 'சராசரி (Modal) விலை',
+  arrivalDate: 'வரத்து தேதி',
+  priceUnit: 'அளவீட்டு அலகு',
+  dataSource: 'தரவு மூலம்: Agmarknet / e-NAM இந்திய அரசு வேளாண் சந்தை மையம்',
+  priceUnavailable: 'தேர்ந்தெடுக்கப்பட்ட மண்டியிலும் பயிருக்கும் இன்றைய விலை விவரம் கிடைக்கவில்லை. பின்னர் பார்க்கவும்.',
+
+  // Government Schemes
+  schemesTitle: 'அரசு வேளாண்மை திட்டங்கள்',
+  schemesIntro: 'மத்திய மற்றும் மாநில அரசுகளின் மானியங்கள், பயிர் காப்பீடு மற்றும் கடன் திட்டங்களை அறிந்து பயனடையுங்கள்.',
+  schemeType: 'திட்ட வகை',
+  benefits: 'முக்கிய நன்மைகள்',
+  eligibility: 'தகுதி வரம்புகள்',
+  requiredDocs: 'தேவையான ஆவணங்கள்',
+  howToApply: 'விண்ணப்பிக்கும் முறை',
+  applyOnline: 'அரசு இணையதளத்திற்கு செல்ல',
+
+  // Nearby Help & Contacts
+  helpNearMeTitle: 'அருகிலுள்ள வேளாண்மை உதவி மையங்கள்',
+  helpIntro: 'உங்கள் மாவட்டத்தில் உள்ள வேளாண் அறிவியல் நிலையங்கள் (KVK), வேளாண்மை துறை அலுவலகங்கள் மற்றும் ஆய்வகங்களை கண்டறியவும்.',
+  category: 'சேவை பிரிவு',
+  address: 'முகவரி',
+  contactPerson: 'தொடர்பு எண் / தொலைபேசி',
+  workingHours: 'பணி நேரம்',
+  verifiedContactsTitle: 'சரிபார்க்கப்பட்ட அரசு உதவி எண்கள்',
+  emergencyHelplines: 'விவசாயிகளுக்கான அவசர உதவி எண்கள்',
+
+  // Ask Agriculture AI Assistant
+  aiAssistantTitle: 'வேளாண் AI உதவியாளரிடம் கேளுங்கள்',
+  aiAssistantIntro: 'உங்கள் விவசாய சந்தேகங்களை தமிழிலோ அல்லது ஆங்கிலத்திலோ கேளுங்கள். உங்கள் நிலம், வானிலைக்கு ஏற்ப AI வழிகாட்டும்.',
+  askPlaceholder: 'பயிர்கள், உரம், பாசனம், நோய்கள் அல்லது திட்டங்கள் பற்றி கேளுங்கள்...',
+  send: 'கேள்வி கேட்க',
+  voiceInput: 'குரல் வழி உள்ளீடு (பேசி கேட்க)',
+  listenVoice: 'ஆடியோ குரல் வழியில் கேட்க',
+  stopVoice: 'ஆடியோவை நிறுத்து',
+  smartChipsTitle: 'மாதிரி கேள்விகள்:',
+  chip1: 'இந்த பருவத்தில் செம்மண்ணுக்கு ஏற்ற பயிர் எது?',
+  chip2: 'மிளகாயில் இலை சுருட்டு நோயை இயற்கை முறையில் எப்படி கட்டுப்படுத்துவது?',
+  chip3: 'நாளை மழை பெய்யுமா? பாசனம் செய்யலாமா?',
+  chip4: '100% சொட்டு நீர் பாசன மானியம் பெறுவது எப்படி?',
+  aiConfidenceNotice: 'வேளாண் AI வழிகாட்டல் தகவல் நோக்கங்களுக்காக மட்டுமே. முக்கியமான முடிவுகளுக்கு KVK விஞ்ஞானிகளை அணுகவும்.',
+
+  // Settings & Admin
+  settingsTitle: 'செயலி அமைப்புகள்',
+  languageSelection: 'மொழி / Language',
+  englishLang: 'English (ஆங்கிலம்)',
+  tamilLang: 'தமிழ் (Tamil)',
+  storageNotice: 'உங்கள் பண்ணை விவரங்கள் மற்றும் கணக்கீடுகள் இந்த சாதனத்திலேயே பாதுகாப்பாக சேமிக்கப்படுகின்றன.',
+  clearData: 'தரவை மீட்டமைத்து செயலியை ரீசெட் செய்',
+  dataCleared: 'அனைத்து உள்ளூர் தரவுகளும் அழிக்கப்பட்டன.',
+  adminTitle: 'வேளாண் நிர்வாக பலகை',
+  registeredFarmers: 'பதிவு செய்யப்பட்ட விவசாயிகள்',
+  manageAnnouncements: 'அவசர அறிவிப்புகளை வெளியிடுக',
+  publishAnnouncement: 'அறிவிப்பை வெளியிடு',
+  announcementText: 'அறிவிப்பு விவரங்கள் (எ.கா: மானிய விநியோக முகாம்)',
+  auditTimestamp: 'பதிவு செய்யப்பட்ட நேரம்',
+  noFarmersYet: 'இந்த சாதனத்தில் இன்னும் விவசாயிகள் பதிவு செய்யப்படவில்லை.',
+
+  // Splash & Login
+  welcomeHeroTitle: 'ஒவ்வொரு நிலத்தையும் எளிதாக நிர்வகியுங்கள்',
+  welcomeHeroSub: 'நவீன வேளாண் தொழில்நுட்பம் மூலம் வானிலை கணிப்பு, பயிர் திட்டம், நோய் கண்டறிதல் மற்றும் லாபகரமான சாகுபடியை உறுதி செய்யுங்கள்.',
+  enterMobile: 'கைபேசி எண்ணை உள்ளிடவும்',
+  sendOtp: 'உடனே தொடங்க / OTP',
+  demoOtp: 'கைபேசி எண் மூலம் நுழைய',
+  loginSuccess: 'வெற்றிகரமாக இணைக்கப்பட்டது! உழவன் தோழன் உங்களை வரவேற்கிறது.'
+};
+
+let currentLang = localStorage.getItem('farm-lang') || 'ta';
+
+export function getLang() {
+  return currentLang;
+}
+
+export function setLang(newLang) {
+  if (newLang === 'en' || newLang === 'ta') {
+    currentLang = newLang;
+    localStorage.setItem('farm-lang', newLang);
+  }
+}
+
+export function t(key) {
+  const dict = currentLang === 'ta' ? TA : EN;
+  if (dict[key] !== undefined) {
+    return dict[key];
+  }
+  if (EN[key] !== undefined) {
+    return EN[key];
+  }
+  return key;
+}
+
+export function getText(enText, taText) {
+  return currentLang === 'ta' && taText ? taText : (enText || '');
+}

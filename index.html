@@ -1,1 +1,37 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#2b3a21"><meta name="description" content="Control Every Field with Ease - Modern Smart Farming & Agriculture Assistant"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="manifest" href="manifest.json"><title>Smart Farming - Control Every Field with Ease</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"></head><body><div id="root"><main style="padding:40px;text-align:center;color:#b8cbb0;font-family:'Plus Jakarta Sans',sans-serif">Loading Smart Farm…</main></div><script>if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script><script type="module" src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121c0e">
+  <meta name="description" content="Smart Farm Assistant - Mobile-first agriculture companion for Indian farmers with live weather, crop guidance, soil testing, market prices, and government schemes.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <title>Smart Farm Assistant - Control Every Field with Ease</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="root">
+    <div style="padding:60px 20px;text-align:center;color:#95a890;font-family:'Plus Jakarta Sans',sans-serif">
+      <div style="font-size:36px;margin-bottom:12px;">🌾</div>
+      <h3 style="color:#ffffff;margin-bottom:6px;">Smart Farm Assistant</h3>
+      <p>உழவன் தோழன் ஏற்றப்படுகிறது...</p>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.warn('SW registration skipped:', err);
+        });
+      });
+    }
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
