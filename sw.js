@@ -3,7 +3,7 @@
 // Enables reliable offline and low-network access for Indian farmers
 // ==========================================================================
 
-const CACHE_NAME = 'smart-farm-prod-v3.5';
+const CACHE_NAME = 'smart-farm-prod-v4.0';
 
 const STATIC_ASSETS = [
   './',

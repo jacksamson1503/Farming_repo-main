@@ -201,31 +201,60 @@ function renderHeader() {
 
   return `
     <header class="app-header">
-      <div class="header-top-row">
-        <button class="header-icon-btn" id="openDrawerBtn" title="${t('allServices')}">
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <div class="header-inner">
+        <!-- Desktop Brand Logo & Title -->
+        <div class="header-brand" data-goto="home">
+          <span class="brand-icon">🌱</span>
+          <div class="brand-text">
+            <span class="brand-title">${t('appName')}</span>
+            <span class="brand-sub">${getLang() === 'ta' ? 'உழவன் தோழன்' : 'Smart Farm Assistant'}</span>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="desktop-nav-menu">
+          <button class="d-nav-link ${state.page === 'home' ? 'active' : ''}" data-goto="home">${t('home')}</button>
+          <button class="d-nav-link ${state.page === 'weather' ? 'active' : ''}" data-goto="weather">${t('weather')}</button>
+          <button class="d-nav-link ${state.page === 'crop-library' ? 'active' : ''}" data-goto="crop-library">${t('crops')}</button>
+          <button class="d-nav-link ${state.page === 'calendar' ? 'active' : ''}" data-goto="calendar">${t('calendar')}</button>
+          <button class="d-nav-link ${state.page === 'market' ? 'active' : ''}" data-goto="market">${t('market')}</button>
+          <button class="d-nav-link ${state.page === 'schemes' ? 'active' : ''}" data-goto="schemes">${t('schemesTitle').split(' ')[0]}</button>
+          <button class="d-nav-link ${state.page === 'calculator' ? 'active' : ''}" data-goto="calculator">${t('calculatorTitle').split(' ')[0]}</button>
+        </nav>
+
+        <!-- Mobile Drawer Menu Trigger Button -->
+        <button class="header-icon-btn mobile-only" id="openDrawerBtn" title="${t('allServices')}">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
 
+        <!-- Location Pill -->
         <div class="header-location-pill" id="headerLocationBtn" title="${t('changeLocation')}">
           <span class="loc-pin-icon">📍</span>
           <span class="loc-text-label">${esc(locTitle)}</span>
           <span class="loc-chevron">▾</span>
         </div>
 
+        <!-- Header Actions: Language, Search, Emergency, Desktop Drawer -->
         <div class="header-actions-group">
           <!-- Language Switcher Button -->
           <button class="lang-pill-btn" id="toggleLangBtn" title="Switch Language">
-            ${getLang() === 'ta' ? 'English' : 'தமிழ்'}
+            <span>${getLang() === 'ta' ? '🇬🇧 English' : '🇮🇳 தமிழ்'}</span>
           </button>
 
           <!-- Search Button -->
           <button class="header-icon-btn" id="openSearchBtn" title="${t('search')}">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <svg viewBox="0 0 24 24" width="19" height="19" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
 
           <!-- Emergency Call Button -->
           <button class="emergency-icon-btn" id="openEmergencyBtn" title="${t('emergencyCall')}">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+            <span class="emergency-label-desktop">1800-180-1551</span>
+          </button>
+
+          <!-- Desktop Services Grid Button -->
+          <button class="header-icon-btn desktop-only" id="openDrawerBtnDesktop" title="${t('allServices')}">
+            <svg viewBox="0 0 24 24" width="19" height="19" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </button>
         </div>
       </div>
@@ -465,36 +494,52 @@ function renderEmergencyModal() {
 function screenWelcome() {
   return `
     <div class="screen-welcome">
-      <div class="welcome-hero-banner">
-        <div class="welcome-overlay-glow"></div>
-        <div class="welcome-badge">🌱 ${t('appName')}</div>
-        <h1 class="welcome-heading">${t('welcomeHeroTitle')}</h1>
-        <p class="welcome-desc">${t('welcomeHeroSub')}</p>
-      </div>
+      <div class="welcome-container">
+        <div class="welcome-hero-banner">
+          <div class="welcome-badge">🌱 ${t('appName')}</div>
+          <h1 class="welcome-heading">${t('welcomeHeroTitle')}</h1>
+          <p class="welcome-desc">${t('welcomeHeroSub')}</p>
+        </div>
 
-      <div class="welcome-card-box">
-        <div class="lang-selector-group">
-          <label class="form-label">${t('preferredLang')}</label>
-          <div class="lang-choice-cards">
-            <button class="lang-choice-card ${getLang() === 'ta' ? 'active' : ''}" data-lang="ta">
-              <span class="flag">🇮🇳</span>
-              <strong>தமிழ்</strong>
-              <span>தமிழ்நாடு & தென்னிந்தியா</span>
+        <div class="welcome-card-box">
+          <div class="lang-selector-section">
+            <div class="lang-section-header">
+              <span class="lang-header-icon">🌐</span>
+              <div>
+                <label class="form-label">${t('preferredLang')}</label>
+                <p class="lang-section-sub">${getLang() === 'ta' ? 'தொடர உங்கள் விருப்ப மொழியை தேர்வு செய்யவும்' : 'Select your preferred language to begin'}</p>
+              </div>
+            </div>
+
+            <div class="lang-choice-cards">
+              <button type="button" class="lang-choice-card ${getLang() === 'ta' ? 'active' : ''}" data-lang="ta">
+                <div class="lcc-header">
+                  <span class="flag-icon">🇮🇳</span>
+                  <div class="lcc-radio-dot"></div>
+                </div>
+                <strong>தமிழ்</strong>
+                <span>தமிழ்நாடு & தென்னிந்தியா</span>
+              </button>
+              <button type="button" class="lang-choice-card ${getLang() === 'en' ? 'active' : ''}" data-lang="en">
+                <div class="lcc-header">
+                  <span class="flag-icon">🌐</span>
+                  <div class="lcc-radio-dot"></div>
+                </div>
+                <strong>English</strong>
+                <span>All India Agricultural Companion</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="welcome-actions-group">
+            <button class="btn-primary-large" id="welcomeStartBtn">
+              ${t('getStarted')} ➔
             </button>
-            <button class="lang-choice-card ${getLang() === 'en' ? 'active' : ''}" data-lang="en">
-              <span class="flag">🌐</span>
-              <strong>English</strong>
-              <span>All India Farmers</span>
+            <button class="btn-secondary-large" data-goto="login">
+              ${t('demoOtp')}
             </button>
           </div>
         </div>
-
-        <button class="btn-primary-large" id="welcomeStartBtn">
-          ${t('getStarted')} ➔
-        </button>
-        <button class="btn-secondary-large" data-goto="login">
-          ${t('demoOtp')}
-        </button>
       </div>
     </div>
   `;
@@ -2155,6 +2200,13 @@ function renderPage() {
 
 // Main Render
 function render() {
+  const isModalOrDrawerOpen = state.drawerOpen || state.searchModalOpen || state.emergencyModalOpen;
+  if (isModalOrDrawerOpen) {
+    document.body.classList.add('modal-open');
+  } else {
+    document.body.classList.remove('modal-open');
+  }
+
   root.innerHTML = `
     <div class="app-shell">
       ${renderHeader()}
@@ -2204,7 +2256,7 @@ function bindEvents() {
     }
 
     // 2. Drawer actions
-    if (target.closest('#openDrawerBtn')) {
+    if (target.closest('#openDrawerBtn') || target.closest('#openDrawerBtnDesktop')) {
       state.drawerOpen = true;
       render();
       return;
